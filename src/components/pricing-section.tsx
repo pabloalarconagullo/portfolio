@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { formatPrice, pricing } from "@content/pricing";
 
+import { AnimatedPrice } from "./motion/animated-price";
 import { Pending } from "./pending";
 import { Section } from "./section";
 
@@ -59,7 +60,7 @@ export function PricingSection() {
 
               <p className="num mt-8 flex items-baseline gap-1.5">
                 <span className="text-[clamp(2.75rem,2.2rem+2vw,3.75rem)] font-extrabold leading-none tracking-[-0.04em]">
-                  {formatPrice(plan)}
+                  {plan.price === null ? formatPrice(plan) : <AnimatedPrice value={plan.price} />}
                 </span>
                 {plan.price !== null && plan.per && (
                   <span className={plan.featured ? "opacity-80" : "text-graphite"}>/{plan.per}</span>

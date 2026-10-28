@@ -39,13 +39,17 @@ export function AboutSection() {
         </div>
         <div data-reveal="portrait" className="self-start">
           {portrait ? (
-            <Image
-              src={portrait.src}
-              alt={portrait.alt}
-              placeholder="blur"
-              sizes="(min-width: 70rem) 17rem, 20rem"
-              className="aspect-[4/5] h-auto w-full max-w-xs rounded-[4px] border border-rule object-cover object-[45%_30%]"
-            />
+            // La foto es un 15 % más alta que su marco y se desplaza con el scroll (data-parallax).
+            <div className="aspect-[4/5] w-full max-w-xs overflow-hidden rounded-[4px] border border-rule">
+              <Image
+                data-parallax="5"
+                src={portrait.src}
+                alt={portrait.alt}
+                placeholder="blur"
+                sizes="(min-width: 70rem) 17rem, 20rem"
+                className="h-[115%] w-full -translate-y-[6%] object-cover object-[45%_30%]"
+              />
+            </div>
           ) : (
             <div className="grid aspect-[4/5] w-full max-w-xs place-items-center rounded-[4px] border border-dashed border-cobalt p-6 text-center">
               <Pending what="tu retrato (opcional)" />

@@ -13,6 +13,7 @@ import { ProjectIndex } from "@/components/project-index";
 import { ProjectSpread } from "@/components/project-spread";
 import { Section } from "@/components/section";
 import { ServicesSection } from "@/components/services-section";
+import { StackMarquee } from "@/components/stack-marquee";
 import { baseUrl } from "@/lib/seo";
 
 export default function Home() {
@@ -39,7 +40,9 @@ export default function Home() {
         }}
       />
 
+      <div className="read-progress" aria-hidden="true" />
       <Hero />
+      <StackMarquee />
 
       <Section
         id="proyectos"

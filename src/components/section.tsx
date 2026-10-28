@@ -29,7 +29,7 @@ export function Section({
     >
       <div className="shell">
         <div className="with-margin mb-12 md:mb-16">
-          <h2 id={`${id}-titulo`} data-reveal="" className="t-h2 max-w-[18ch]">
+          <h2 id={`${id}-titulo`} data-split="lines" className="t-h2 max-w-[18ch]">
             {title}
           </h2>
           {aside && (

@@ -4,8 +4,8 @@ Portfolio personal de desarrollo web. La web se lee como un documento cuidado: e
 y, al margen, un bolígrafo azul anota las decisiones técnicas de cada proyecto. En las capturas, unas marcas numeradas
 señalan lo que comenta cada nota.
 
-Stack: Next.js 16 (App Router), React 19, TypeScript y Tailwind CSS 4. No usa librerías de animación: los trazos y
-transiciones son CSS y un componente pequeño (`src/components/annotation-layer.tsx`).
+Stack: Next.js 16 (App Router), React 19, TypeScript y Tailwind CSS 4. Animaciones con GSAP (ScrollTrigger y
+SplitText) y scroll suave con Lenis; los trazos del bolígrafo y las entradas sencillas son CSS. Fondo siempre blanco.
 
 ## Comandos
 
@@ -83,7 +83,16 @@ porque no hay clave en este equipo.
 ## Accesibilidad y rendimiento
 
 - Las notas son texto normal: sin JavaScript la web se lee entera. Las líneas son decorativas (`aria-hidden`).
-- Animaciones (todas CSS, sin librerías):
+- Animaciones con GSAP y Lenis (`src/components/motion/`), declaradas con atributos:
+  - `data-split="words"`: el titular se enfoca palabra a palabra; `data-split="lines"`: los títulos de sección suben
+    por líneas desde detrás de una máscara. Al terminar se restaura el texto original.
+  - `data-marquee`: cinta de tecnologías que acelera y cambia de sentido con la velocidad del scroll y se para bajo
+    el ratón. `data-parallax`: el retrato se desplaza dentro de su marco. `data-magnetic`: botones que siguen al puntero.
+  - `data-process`: en escritorio, la línea de tiempo se queda fija mientras el scroll rellena el progreso y enciende
+    cada paso.
+  - Los precios cuentan hasta su importe al aparecer y al cambiar de grupo; la cabecera se aparta al bajar y vuelve
+    al subir; las marcas de las capturas laten al aparecer; barra de progreso de lectura en la portada.
+- Animaciones CSS:
   - Los bloques suben al llegar a ellos; las capturas se revelan de arriba abajo y después aparecen sus marcas
     numeradas; los pasos del proceso dibujan su filete; el retrato se descubre de abajo arriba. Se controla con
     `data-reveal` (`""`, `"fade"`, `"figure"`, `"rule"`, `"portrait"`) y `--i` para escalonar; lo activa
@@ -91,7 +100,8 @@ porque no hay clave en este equipo.
   - Al abrir un caso desde la portada, su captura viaja a la nueva página (View Transitions de React, Chromium,
     Safari y Firefox recientes; en el resto el cambio es normal).
   - Solo se oculta lo que espera fuera de la pantalla: sin JavaScript todo se ve.
-- Con «reducir movimiento» no hay animaciones de entrada, trazos animados ni transiciones de página, y el scroll no es suave.
+- Con «reducir movimiento» no se carga Lenis ni se ejecuta ninguna animación de GSAP: no hay animaciones de entrada,
+  trazos animados ni transiciones de página, y el scroll no es suave.
 - Enlace para saltar al contenido, foco visible, menú móvil que se cierra con Esc y devuelve el foco, errores del
   formulario asociados a cada campo.
 - Páginas estáticas salvo `/contacto` (lee `?proyecto=`). Imágenes optimizadas con `next/image` (AVIF/WebP) y

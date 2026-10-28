@@ -10,12 +10,22 @@ export function SiteHeader({ name }: { name: string | null }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    // Al bajar, la cabecera se aparta para dejar sitio al contenido; al subir, vuelve.
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      if (Math.abs(y - last) > 6) {
+        setHidden(y > last && y > 480);
+        last = y;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -63,7 +73,8 @@ export function SiteHeader({ name }: { name: string | null }) {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-paper/95 backdrop-blur-sm transition-[border-color] ${
+      data-hidden={hidden && !open ? "" : undefined}
+      className={`site-header sticky top-0 z-50 bg-paper/95 backdrop-blur-sm ${
         scrolled || open ? "border-b border-rule" : "border-b border-transparent"
       }`}
     >
@@ -114,6 +125,7 @@ export function SiteHeader({ name }: { name: string | null }) {
       <div
         id="menu-movil"
         ref={panelRef}
+        data-lenis-prevent=""
         hidden={!open}
         className="h-[calc(100dvh-var(--header-h))] overflow-y-auto border-t border-rule bg-paper lg:hidden"
       >

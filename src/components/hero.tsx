@@ -14,7 +14,7 @@ export function Hero() {
       <AnnotationLayer trigger="mount" baseDelay={650}>
         <div className="with-margin">
           <div>
-            <h1 id="hero-titulo" className="t-display max-w-[17ch]">
+            <h1 id="hero-titulo" data-split="words" className="t-display max-w-[17ch]">
               <AnchoredText source={headline} notes={notes} />
             </h1>
             <p className="t-lead mt-8 max-w-[44ch]">
@@ -26,12 +26,17 @@ export function Hero() {
               className="hero-ink mt-10 flex flex-wrap gap-3"
               style={{ ["--d" as string]: "250ms" }}
             >
-              <Link href="/contacto" className="btn btn-primary w-full sm:w-auto">
-                Cuéntame tu proyecto
-              </Link>
-              <Link href="/#proyectos" className="btn btn-quiet w-full sm:w-auto">
-                Ver proyectos
-              </Link>
+              {/* El envoltorio es el que se mueve (data-magnetic): el botón conserva su propia transición. */}
+              <span data-magnetic="" className="inline-block w-full sm:w-auto">
+                <Link href="/contacto" className="btn btn-primary w-full sm:w-auto">
+                  Cuéntame tu proyecto
+                </Link>
+              </span>
+              <span data-magnetic="" className="inline-block w-full sm:w-auto">
+                <Link href="/#proyectos" className="btn btn-quiet w-full sm:w-auto">
+                  Ver proyectos
+                </Link>
+              </span>
             </div>
 
             <dl

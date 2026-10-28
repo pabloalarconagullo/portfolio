@@ -252,3 +252,25 @@ test("precios: el selector cambia de grupo y cada plan llega al formulario", asy
   await page.getByRole("button", { name: "Quitar plan" }).click();
   await expect(page.getByText("Te interesa el plan")).toHaveCount(0);
 });
+
+test("animaciones GSAP: activas con movimiento, ausentes con «reducir movimiento»", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  const html = page.locator("html");
+  await expect(html).toHaveAttribute("data-motion", "");
+  await expect(html).toHaveClass(/\blenis\b/);
+  // La cinta se mueve sola.
+  const track = page.locator("[data-marquee]");
+  const x0 = await track.evaluate((el) => el.getBoundingClientRect().x);
+  await page.waitForTimeout(600);
+  expect(await track.evaluate((el) => el.getBoundingClientRect().x)).toBeLessThan(x0);
+  // Los títulos divididos se restauran al terminar: el DOM vuelve a ser el de React.
+  await expect(page.locator("h1 .split-word")).toHaveCount(0, { timeout: 5000 });
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("no pueden fallar");
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await expect(html).not.toHaveAttribute("data-motion", "");
+  await expect(html).not.toHaveClass(/\blenis\b/);
+  await expect(page.locator(".marquee-track > [aria-hidden='true']").first()).toBeHidden();
+});

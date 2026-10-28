@@ -3,6 +3,8 @@ import { Newsreader, Schibsted_Grotesk } from "next/font/google";
 
 import { displayName, site } from "@content/site";
 import { MobileCta } from "@/components/mobile-cta";
+import { MotionEffects } from "@/components/motion/motion-effects";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { RevealObserver } from "@/components/reveal-observer";
 import { plainText } from "@/components/notes";
 import { SiteFooter } from "@/components/site-footer";
@@ -49,10 +51,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#edeff1" },
-    { media: "(prefers-color-scheme: dark)", color: "#141a26" },
-  ],
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -66,6 +66,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteFooter />
         <MobileCta />
         <RevealObserver />
+        <SmoothScroll />
+        <MotionEffects />
       </body>
     </html>
   );
