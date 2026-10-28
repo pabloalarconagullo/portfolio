@@ -380,7 +380,7 @@ body {
    RevealObserver marca con data-pending lo que espera fuera de la pantalla; sin JS o con
    «reducir movimiento» no se oculta nada.
    Variantes: por defecto el bloque sube; «fade» solo aparece (para lo que se mide, como las notas); «figure» revela la captura de arriba abajo y luego
-   aparecen sus marcas; «rule» dibuja el filete superior; «portrait» descubre la foto.
+   aparecen sus marcas; «rule» dibuja el filete superior.
    --i escalona elementos hermanos. */
 @media (prefers-reduced-motion: no-preference) {
   html[data-reveal-ready] [data-reveal] {
@@ -469,15 +469,6 @@ body {
     opacity: 0;
   }
 
-  /* Retrato: se descubre de abajo arriba */
-  html[data-reveal-ready] [data-reveal="portrait"] {
-    clip-path: inset(0 0 0 0);
-    transition: clip-path 1200ms cubic-bezier(0.65, 0, 0.35, 1);
-  }
-
-  html[data-reveal-ready] [data-reveal="portrait"][data-pending] {
-    clip-path: inset(100% 0 0 0);
-  }
 }
 
 /* Al cambiar de grupo de precios, el contenido de cada columna entra de nuevo */

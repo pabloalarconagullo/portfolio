@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { site } from "@content/site";
@@ -8,13 +7,12 @@ import { AnchoredText, NoteList } from "./notes";
 import { Pending } from "./pending";
 
 /**
- * Primera pantalla: quién (con foto), titular anotado, entradilla y llamadas a la acción.
+ * Primera pantalla: quién, titular anotado, entradilla y llamadas a la acción.
  * En escritorio las notas van al margen; en móvil van después de los botones, para que la
  * llamada a la acción se vea sin hacer scroll.
  */
 export function Hero() {
   const { headline, intro, notes } = site.hero;
-  const portrait = site.about.portrait;
 
   return (
     <section aria-labelledby="hero-titulo" className="shell pb-14 pt-6 md:pb-20 md:pt-10 margin:pt-12">
@@ -22,15 +20,9 @@ export function Hero() {
         <div className="with-margin margin:gap-y-0">
           <div className="margin:col-start-1 margin:row-start-1">
             <div className="hero-ink mb-7 flex items-center gap-3.5 md:mb-9" style={{ ["--d" as string]: "100ms" }}>
-              {portrait && (
-                <Image
-                  src={portrait.src}
-                  alt=""
-                  preload
-                  sizes="3.25rem"
-                  className="size-13 shrink-0 rounded-full object-cover object-[45%_25%] ring-2 ring-paper outline-2 outline-cobalt"
-                />
-              )}
+              <span aria-hidden="true" className="grid size-11 shrink-0 place-items-center rounded-full bg-cobalt">
+                <span className="size-3 rotate-45 bg-marker" />
+              </span>
               <p className="text-[0.95rem] leading-snug">
                 <span className="block font-semibold">
                   {site.name ?? <Pending what="tu nombre" />}

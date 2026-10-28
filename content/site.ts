@@ -8,10 +8,6 @@
  * revísalos y cámbialos por tus palabras.
  */
 
-import type { StaticImageData } from "next/image";
-
-import portrait from "@/assets/retrato.jpeg";
-
 export type HeroNote = {
   /** Debe coincidir con la marca `[texto](id)` del titular. */
   id: string;
@@ -83,11 +79,6 @@ export const site = {
   },
 
   about: {
-    /** Tu retrato (importado de src/assets). Opcional. */
-    portrait: {
-      src: portrait,
-      alt: "Pablo Alarcón sentado en su puesto de trabajo, con dos monitores con código detrás.",
-    } as { src: StaticImageData; alt: string } | null,
     /**
      * Párrafos sobre ti. PROPUESTOS: redactados solo con datos de tu web profesional y de tus
      * proyectos (sin años de experiencia, clientes ni cifras). Cámbialos por tus palabras.

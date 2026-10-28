@@ -31,11 +31,10 @@ discontinuo, para que no se publique sin querer.
 
 | Archivo | Qué |
 |---|---|
-| `content/site.ts` | Rol y presentación «Sobre mí» (**PROPUESTOS**), nombre, ubicación, **dominio** (`url`), correo, canales (WhatsApp, agenda…), perfiles, disponibilidad, retrato, rangos de presupuesto y datos legales (titular, NIF, dirección). |
+| `content/site.ts` | Rol y presentación «Sobre mí» (**PROPUESTOS**), nombre, ubicación, **dominio** (`url`), correo, canales (WhatsApp, agenda…), perfiles, disponibilidad, rangos de presupuesto y datos legales (titular, NIF, dirección). |
 | `content/site.ts` → `hero` | Titular, entradilla y notas al margen. Textos **PROPUESTOS**: cámbialos por los tuyos. `[texto](id)` anota una palabra con la nota de ese `id`. |
 | `content/services.ts` | Servicios, entregables y pasos del proceso. Textos **PROPUESTOS**. |
 | `content/projects.ts` | Proyectos. Los textos salen de los README de tus carpetas en `X:\PABLO\PROYECTO` y las capturas de sus propias pruebas. Revisa que todo sea publicable. |
-| `src/assets/retrato.jpeg` | Tu retrato, importado en `site.about.portrait`. |
 | `src/app/privacidad`, `src/app/aviso-legal` | Textos legales **provisionales**: revísalos antes de publicar. |
 
 ### Proyectos: puntos a revisar antes de publicar
@@ -87,15 +86,15 @@ porque no hay clave en este equipo.
   - `data-split="words"`: el titular se enfoca palabra a palabra; `data-split="lines"`: los títulos de sección suben
     por líneas desde detrás de una máscara. Al terminar se restaura el texto original.
   - `data-marquee`: cinta de tecnologías que acelera y cambia de sentido con la velocidad del scroll y se para bajo
-    el ratón. `data-parallax`: el retrato se desplaza dentro de su marco. `data-magnetic`: botones que siguen al puntero.
+    el ratón. `data-parallax`: el elemento se desplaza más despacio que la página. `data-magnetic`: botones que siguen al puntero.
   - `data-process`: en escritorio, la línea de tiempo se queda fija mientras el scroll rellena el progreso y enciende
     cada paso.
   - Los precios cuentan hasta su importe al aparecer y al cambiar de grupo; la cabecera se aparta al bajar y vuelve
     al subir; las marcas de las capturas laten al aparecer; barra de progreso de lectura en la portada.
 - Animaciones CSS:
   - Los bloques suben al llegar a ellos; las capturas se revelan de arriba abajo y después aparecen sus marcas
-    numeradas; los pasos del proceso dibujan su filete; el retrato se descubre de abajo arriba. Se controla con
-    `data-reveal` (`""`, `"fade"`, `"figure"`, `"rule"`, `"portrait"`) y `--i` para escalonar; lo activa
+    numeradas; los pasos del proceso dibujan su filete. Se controla con
+    `data-reveal` (`""`, `"fade"`, `"figure"`, `"rule"`) y `--i` para escalonar; lo activa
     `src/components/reveal-observer.tsx`.
   - Al abrir un caso desde la portada, su captura viaja a la nueva página (View Transitions de React, Chromium,
     Safari y Firefox recientes; en el resto el cambio es normal).
