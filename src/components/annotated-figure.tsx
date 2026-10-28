@@ -34,12 +34,12 @@ export function AnnotatedFigure({
           tabIndex={0}
           role="region"
           aria-label={`Captura de ${project.title}`}
-          className="-mx-5 overflow-x-auto px-5 py-3 md:mx-0 md:overflow-visible md:p-0"
+          className="stage overflow-x-auto px-4 py-5 md:overflow-visible md:p-8 margin:p-12"
         >
           <div data-reveal={reveal ? "figure" : undefined} className="relative min-w-[44rem] md:min-w-0">
             {/* Misma captura en la portada y en el caso: el navegador la traslada de una página a otra. */}
             <ViewTransition name={`captura-${project.slug}`} share="morph" default="none">
-              <div data-figure="" className="overflow-hidden rounded-[4px] border border-rule bg-paper-2">
+              <div data-figure="" className="shot-shadow overflow-hidden rounded-[0.75rem] bg-paper">
               <Image
                 src={project.image.src}
                 alt={project.image.alt}
@@ -66,7 +66,7 @@ export function AnnotatedFigure({
             )}
           </div>
         </div>
-        <figcaption className="mt-3 text-sm text-graphite">
+        <figcaption className="mt-4 text-sm text-graphite">
           Captura real del proyecto.<span className="md:hidden"> Desliza para verla entera.</span>
         </figcaption>
       </figure>

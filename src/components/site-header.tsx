@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { navItems } from "@/lib/nav";
 
@@ -12,6 +12,8 @@ export function SiteHeader({ name }: { name: string | null }) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [active, setActive] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -69,12 +71,29 @@ export function SiteHeader({ name }: { name: string | null }) {
     };
   }, [open]);
 
+  // La píldora de la navegación sigue al ratón y, si no, se queda en la sección visible.
+  const target = hovered ?? active;
+  useLayoutEffect(() => {
+    const list = navRef.current;
+    if (!list) return;
+    const place = () => {
+      const link = target ? list.querySelector<HTMLElement>(`[data-nav="${target}"]`) : null;
+      list.style.setProperty("--pill-x", `${link?.offsetLeft ?? 0}px`);
+      list.style.setProperty("--pill-w", `${link?.offsetWidth ?? 0}px`);
+      list.style.setProperty("--pill-o", link ? "1" : "0");
+    };
+    place();
+    const resize = new ResizeObserver(place);
+    resize.observe(list);
+    return () => resize.disconnect();
+  }, [target]);
+
   const close = () => setOpen(false);
 
   return (
     <header
       data-hidden={hidden && !open ? "" : undefined}
-      className={`site-header sticky top-0 z-50 bg-paper/95 backdrop-blur-sm ${
+      className={`site-header sticky top-0 z-50 bg-paper/85 backdrop-blur-md backdrop-saturate-150 ${
         scrolled || open ? "border-b border-rule" : "border-b border-transparent"
       }`}
     >
@@ -85,34 +104,44 @@ export function SiteHeader({ name }: { name: string | null }) {
         Saltar al contenido
       </a>
       <div className="shell flex h-[var(--header-h)] items-center justify-between gap-6">
-        <Link href="/" className="text-[1.05rem] font-extrabold tracking-[-0.02em]" onClick={close}>
+        <Link href="/" className="t-wide flex items-center gap-2.5 text-[1.05rem] font-extrabold tracking-[-0.03em] [--wdth:110]" onClick={close}>
+          <span aria-hidden="true" className="size-3 rotate-45 bg-cobalt" />
           {name ?? <span className="pending">Pendiente: tu nombre</span>}
         </Link>
 
         <nav aria-label="Principal" className="hidden lg:block">
-          <ul className="flex items-center gap-7 text-[0.95rem]">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <Link
-                  href={item.href}
-                  className="link-mark inline-block py-2 no-underline"
-                  aria-current={active === item.id ? "true" : undefined}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div ref={navRef} onMouseLeave={() => setHovered(null)} className="relative rounded-full bg-paper-2 p-1">
+            <span aria-hidden="true" className="slider-pill bg-paper opacity-[var(--pill-o,0)] shadow-[0_2px_10px_-2px_rgb(15_20_32/0.18)] [--pill-y:0.25rem] [--pill-h:calc(100%-0.5rem)]" />
+            <ul className="flex items-center text-[0.95rem]">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    href={item.href}
+                    data-nav={item.id}
+                    onMouseEnter={() => setHovered(item.id)}
+                    onFocus={() => setHovered(item.id)}
+                    onBlur={() => setHovered(null)}
+                    className={`relative z-10 inline-block rounded-full px-4 py-2 font-medium transition-colors ${
+                      active === item.id ? "text-cobalt" : "text-ink"
+                    }`}
+                    aria-current={active === item.id ? "true" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/contacto" className="btn btn-primary hidden min-h-10 px-4 py-2 text-[0.95rem] sm:inline-flex" onClick={close}>
+          <Link href="/contacto" className="btn btn-primary hidden min-h-11 px-5 py-2 text-[0.95rem] sm:inline-flex" onClick={close}>
             Pedir presupuesto
           </Link>
           <button
             ref={toggleRef}
             type="button"
-            className="btn btn-quiet min-h-10 px-4 py-2 text-[0.95rem] lg:hidden"
+            className="btn btn-quiet min-h-11 px-5 py-2 text-[0.95rem] lg:hidden"
             aria-expanded={open}
             aria-controls="menu-movil"
             onClick={() => setOpen((v) => !v)}
@@ -133,7 +162,7 @@ export function SiteHeader({ name }: { name: string | null }) {
           <ul className="flex flex-col">
             {navItems.map((item) => (
               <li key={item.id} className="border-b border-rule">
-                <Link href={item.href} onClick={close} className="block py-4 text-3xl font-bold tracking-[-0.03em]">
+                <Link href={item.href} onClick={close} className="t-wide block py-4 text-[2.4rem] font-extrabold leading-none tracking-[-0.045em] hover:text-cobalt">
                   {item.label}
                 </Link>
               </li>

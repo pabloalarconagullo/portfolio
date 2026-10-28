@@ -43,7 +43,7 @@ export function ContactForm({
 
   if (state.status === "sent") {
     return (
-      <div ref={resultRef} tabIndex={-1} role="status" className="rounded-[4px] border border-cobalt p-8">
+      <div ref={resultRef} tabIndex={-1} role="status" className="rounded-[1.25rem] border-2 border-cobalt p-8">
         <p className="text-2xl font-bold tracking-[-0.02em]">Enviado.</p>
         <p className="mt-2 text-graphite">He recibido tu mensaje y te responderé al correo que has indicado.</p>
       </div>
@@ -61,7 +61,7 @@ export function ContactForm({
   return (
     <form ref={formRef} action={action} className="flex flex-col gap-6" noValidate>
       {(state.status === "not_configured" || state.status === "error") && (
-        <div ref={resultRef} tabIndex={-1} role="alert" className="rounded-[4px] border border-cobalt p-5">
+        <div ref={resultRef} tabIndex={-1} role="alert" className="rounded-[1.25rem] border-2 border-cobalt p-5">
           <p className="font-semibold">
             {state.status === "not_configured"
               ? "El envío del formulario aún no está conectado: no se ha enviado nada."
@@ -84,7 +84,7 @@ export function ContactForm({
       )}
 
       {linked && (
-        <div className="flex flex-wrap items-center gap-3 rounded-[3px] bg-marker px-4 py-3 text-on-marker">
+        <div className="flex flex-wrap items-center gap-3 rounded-[0.75rem] bg-marker px-4 py-3 text-on-marker">
           <input type="hidden" name="proyecto" value={linked.value} />
           <span>
             Quieres algo como <strong>{linked.label}</strong>.
@@ -96,7 +96,7 @@ export function ContactForm({
       )}
 
       {chosenPlan && (
-        <div className="flex flex-wrap items-center gap-3 rounded-[3px] bg-marker px-4 py-3 text-on-marker">
+        <div className="flex flex-wrap items-center gap-3 rounded-[0.75rem] bg-marker px-4 py-3 text-on-marker">
           <input type="hidden" name="plan" value={chosenPlan.value} />
           <span>
             Te interesa el plan <strong>{chosenPlan.label}</strong>.

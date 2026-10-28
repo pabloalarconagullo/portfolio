@@ -27,7 +27,7 @@ export type ContactChannel = {
 
 export const site = {
   /** Tu nombre tal y como quieres que aparezca. */
-  name: "Pablo Alarcón Agulló" as string | null,
+  name: "Pablo Alarcón" as string | null,
   /** Cómo te presentas en una línea. PROPUESTO. */
   role: "Graduado Social y desarrollador web" as string | null,
   /** Ciudad o zona desde la que trabajas. Opcional. */
@@ -42,7 +42,10 @@ export const site = {
   /** Otros canales opcionales (WhatsApp, teléfono, agenda de citas…). */
   channels: [] as ContactChannel[],
   /** Perfiles públicos opcionales (GitHub, LinkedIn…). */
-  profiles: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/alarconagullopablo/" }] as {
+  profiles: [
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/alarconagullopablo/" },
+    { label: "GitHub", href: "https://github.com/pabloalarconagullo" },
+  ] as {
     label: string;
     href: string;
   }[],
@@ -83,7 +86,7 @@ export const site = {
     /** Tu retrato (importado de src/assets). Opcional. */
     portrait: {
       src: portrait,
-      alt: "Pablo Alarcón Agulló sentado en su puesto de trabajo, con dos monitores con código detrás.",
+      alt: "Pablo Alarcón sentado en su puesto de trabajo, con dos monitores con código detrás.",
     } as { src: StaticImageData; alt: string } | null,
     /**
      * Párrafos sobre ti. PROPUESTOS: redactados solo con datos de tu web profesional y de tus
@@ -112,7 +115,7 @@ export const site = {
   },
 
   legal: {
-    /** Titular de la web (nombre y apellidos o razón social). */
+    /** Titular de la web (nombre y apellidos o razón social). El aviso legal exige el nombre completo. */
     owner: "Pablo Alarcón Agulló" as string | null,
     /** NIF/NIE del titular. */
     taxId: null as string | null,

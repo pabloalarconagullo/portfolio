@@ -17,6 +17,8 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
  * - `data-marquee`: cinta continua que acelera y cambia de sentido con la velocidad del scroll.
  * - `data-magnetic`: el botón se deja atraer por el puntero.
  * - `data-process`: línea de tiempo fijada; el scroll rellena el progreso y enciende cada paso.
+ * - `data-strip`: tira de capturas que se desliza en horizontal con el scroll.
+ * - `data-stretch`: la anchura variable de la fuente se abre con el scroll (firma del pie).
  *
  * Todo vive dentro de un `matchMedia` de «sin preferencia de movimiento»: con «reducir movimiento»
  * no se ejecuta nada y la página se ve estática. Los textos divididos se restauran al terminar,
@@ -101,6 +103,39 @@ export function MotionEffects() {
             el.removeEventListener("mouseenter", pause);
             el.removeEventListener("mouseleave", resume);
           });
+        }
+
+        // Tira de capturas: avanza en horizontal mientras su franja cruza la pantalla.
+        for (const el of gsap.utils.toArray<HTMLElement>("[data-strip]")) {
+          gsap.fromTo(
+            el,
+            { x: () => window.innerWidth * 0.1 },
+            {
+              x: () => -(el.scrollWidth - window.innerWidth * 0.9),
+              ease: "none",
+              scrollTrigger: {
+                trigger: el.closest("section") ?? el,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.6,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+        }
+
+        // Firma del pie: el eje de anchura de la fuente se abre de estrecha a expandida con el scroll.
+        for (const el of gsap.utils.toArray<HTMLElement>("[data-stretch]")) {
+          gsap.fromTo(
+            el,
+            { "--wdth": 62, yPercent: 30 },
+            {
+              "--wdth": 125,
+              yPercent: 0,
+              ease: "none",
+              scrollTrigger: { trigger: el, start: "top bottom", end: "bottom bottom", scrub: 0.4 },
+            },
+          );
         }
 
         // Línea de tiempo del proceso: el bloque se queda fijo (sticky en CSS) mientras el scroll avanza.

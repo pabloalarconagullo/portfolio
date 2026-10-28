@@ -92,7 +92,7 @@ export default async function ProjectPage({ params }: PageProps<"/proyectos/[slu
       <div className="shell mt-20 flex flex-col gap-16">
         <section aria-labelledby="problema" data-reveal="" className="with-margin">
           <div>
-            <h2 id="problema" className="text-[1.75rem] font-bold tracking-[-0.025em]">
+            <h2 id="problema" className="t-wide text-[clamp(1.75rem,1.3rem+1.4vw,2.5rem)] font-extrabold tracking-[-0.035em]">
               Para qué sirve
             </h2>
             <p className="mt-4 max-w-[62ch] text-[1.15rem] leading-relaxed">{project.problem}</p>
@@ -102,12 +102,13 @@ export default async function ProjectPage({ params }: PageProps<"/proyectos/[slu
         {project.features.length > 0 && (
           <section aria-labelledby="funciones" data-reveal="" className="with-margin">
             <div>
-              <h2 id="funciones" className="text-[1.75rem] font-bold tracking-[-0.025em]">
+              <h2 id="funciones" className="t-wide text-[clamp(1.75rem,1.3rem+1.4vw,2.5rem)] font-extrabold tracking-[-0.035em]">
                 Qué hace
               </h2>
               <ul className="mt-6 border-t border-rule">
                 {project.features.map((f) => (
-                  <li key={f} className="border-b border-rule py-3.5 text-[1.1rem]">
+                  <li key={f} className="flex gap-4 border-b border-rule py-4 text-[1.1rem]">
+                    <span aria-hidden="true" className="mt-[0.55em] size-2 shrink-0 rotate-45 bg-cobalt" />
                     {f}
                   </li>
                 ))}
@@ -123,14 +124,14 @@ export default async function ProjectPage({ params }: PageProps<"/proyectos/[slu
 
         {!project.image && project.features.length === 0 && <NoteList notes={notes} />}
 
-        <section aria-labelledby="siguiente-paso" data-reveal="" className="rounded-[4px] bg-ink p-8 text-paper md:p-12">
+        <section aria-labelledby="siguiente-paso" data-reveal="" className="blue-field rounded-[1.75rem] p-8 md:p-14">
           <h2 id="siguiente-paso" className="t-h3 max-w-[20ch]">
             ¿Necesitas algo parecido?
           </h2>
-          <p className="mt-4 max-w-[52ch] opacity-80">
+          <p className="mt-4 max-w-[52ch] text-white/85">
             Cuéntame tu caso y te digo cómo lo plantearía, qué haría falta y cuánto costaría.
           </p>
-          <Link href={`/contacto?proyecto=${project.slug}`} className="btn mt-8 bg-paper text-ink hover:bg-marker hover:text-on-marker">
+          <Link href={`/contacto?proyecto=${project.slug}`} className="btn btn-on-blue mt-8">
             Quiero algo así
           </Link>
         </section>
@@ -138,8 +139,8 @@ export default async function ProjectPage({ params }: PageProps<"/proyectos/[slu
         {next && next !== project && (
           <nav aria-label="Siguiente proyecto" className="border-t border-rule pt-10">
             <p className="text-graphite">Siguiente proyecto</p>
-            <Link href={`/proyectos/${next.slug}`} className="t-h3 mt-2 inline-block hover:text-cobalt">
-              {next.title}
+            <Link href={`/proyectos/${next.slug}`} className="group t-h3 mt-2 inline-block">
+              <span className="stretch-hover [--wdth:110] group-hover:text-cobalt">{next.title}</span>
             </Link>
           </nav>
         )}

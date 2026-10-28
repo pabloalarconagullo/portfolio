@@ -41,9 +41,9 @@ export function ProjectIndex({ projects, headingLevel = 3 }: { projects: Project
                 type="button"
                 aria-pressed={pressed}
                 onClick={() => setFilter(kind)}
-                className={`rounded-[3px] border px-3 py-1.5 text-[0.95rem] transition-colors ${
+                className={`min-h-10 rounded-full border px-4 py-1.5 text-[0.95rem] font-medium transition-colors ${
                   pressed
-                    ? "border-marker bg-marker text-on-marker"
+                    ? "border-ink bg-ink text-paper"
                     : "border-rule hover:border-ink"
                 }`}
               >
@@ -66,10 +66,10 @@ export function ProjectIndex({ projects, headingLevel = 3 }: { projects: Project
                 onMouseLeave={() => setHovered(null)}
                 onFocus={() => setHovered(project.slug)}
                 onBlur={() => setHovered(null)}
-                className="group grid gap-1 py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:items-baseline md:gap-8"
+                className="group grid gap-1 py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:items-baseline md:gap-8"
               >
-                <Title className="text-[1.45rem] font-bold leading-tight tracking-[-0.02em]">
-                  <span className="link-mark no-underline group-hover:bg-[length:100%_0.42em] group-focus-visible:bg-[length:100%_0.42em]">
+                <Title className="text-[clamp(1.4rem,1.1rem+1vw,2rem)] font-extrabold leading-tight tracking-[-0.03em]">
+                  <span className="stretch-hover [--wdth:100] group-hover:text-cobalt group-focus-visible:text-cobalt">
                     {project.title}
                   </span>
                 </Title>
@@ -100,8 +100,8 @@ export function ProjectIndex({ projects, headingLevel = 3 }: { projects: Project
                   alt=""
                   sizes="17rem"
                   loading="eager"
-                  className={`col-start-1 row-start-1 h-auto w-full rounded-[4px] border border-rule transition-opacity duration-300 motion-reduce:transition-none ${
-                    preview?.slug === p.slug ? "opacity-100" : "opacity-0"
+                  className={`shot-shadow col-start-1 row-start-1 h-auto w-full rounded-[0.75rem] transition-[opacity,scale,rotate] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+                    preview?.slug === p.slug ? "scale-100 rotate-0 opacity-100" : "scale-95 -rotate-2 opacity-0"
                   }`}
                 />
               ) : null,

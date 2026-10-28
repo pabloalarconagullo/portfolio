@@ -36,9 +36,11 @@ export function StackList({ project }: { project: Project }) {
       <p id={`${project.slug}-stack`} className="text-sm text-graphite">
         Construido con
       </p>
-      <ul aria-labelledby={`${project.slug}-stack`} className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[0.95rem]">
+      <ul aria-labelledby={`${project.slug}-stack`} className="mt-3 flex flex-wrap gap-1.5 text-[0.9rem]">
         {project.stack.map((tech) => (
-          <li key={tech}>{tech}</li>
+          <li key={tech} className="rounded-full border border-rule px-3 py-1">
+            {tech}
+          </li>
         ))}
       </ul>
     </div>

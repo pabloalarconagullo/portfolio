@@ -9,13 +9,15 @@ import { kindsText, ProjectActions, StackList } from "./project-links";
 /** Proyecto destacado a página completa: texto, captura anotada y notas técnicas al margen. */
 export function ProjectSpread({ project }: { project: Project }) {
   return (
-    <article aria-labelledby={`${project.slug}-titulo`} className="border-t border-rule py-16 first:border-t-0 first:pt-0 md:py-24">
+    <article aria-labelledby={`${project.slug}-titulo`} className="py-12 first:pt-0 md:py-20">
       <div className="with-margin mb-10 md:mb-14">
         <div data-reveal="">
-          <p className="text-graphite">{kindsText(project)}</p>
-          <h3 id={`${project.slug}-titulo`} className="t-h3 mt-3">
-            <Link href={`/proyectos/${project.slug}`} className="hover:text-cobalt">
-              {project.title}
+          <p className="inline-flex rounded-full bg-paper-2 px-3 py-1 text-sm font-medium text-graphite">
+            {kindsText(project)}
+          </p>
+          <h3 id={`${project.slug}-titulo`} className="t-h3 mt-5">
+            <Link href={`/proyectos/${project.slug}`} className="group">
+              <span className="stretch-hover [--wdth:110] group-hover:text-cobalt">{project.title}</span>
             </Link>
           </h3>
           <p className="t-lead mt-5 max-w-[46ch]">{project.summary}</p>

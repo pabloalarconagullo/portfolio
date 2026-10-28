@@ -23,18 +23,18 @@ export function ProcessSection() {
                 key={step.title}
                 data-reveal="rule"
                 data-process-step=""
-                className="process-step flex flex-col border-t border-ink pt-5"
+                className="process-step flex flex-col border-t-2 border-ink pt-6"
                 style={{ ["--i" as string]: i * 2 }}
               >
-                <span aria-hidden="true" className="num text-[3.25rem] font-extrabold leading-none tracking-[-0.04em] text-cobalt">
+                <span aria-hidden="true" className="num t-wide text-[clamp(3.5rem,2.8rem+2.4vw,5.5rem)] font-black leading-[0.85] tracking-[-0.06em] text-cobalt [--wdth:125]">
                   {i + 1}
                 </span>
-                <h3 className="mt-5 text-xl font-bold tracking-[-0.02em]">
+                <h3 className="t-wide mt-6 text-[1.35rem] font-extrabold tracking-[-0.03em] [--wdth:108]">
                   <span className="sr-only">Paso {i + 1}: </span>
                   {step.title}
                 </h3>
                 <p className="mb-6 mt-2 max-w-[34ch] grow text-graphite">{step.description}</p>
-                <p className="border-l-2 border-marker pl-3 text-[0.95rem]">
+                <p className="rounded-[0.75rem] bg-paper-2 px-4 py-3 text-[0.95rem]">
                   <span className="text-graphite">Recibes: </span>
                   {step.outcome}
                 </p>

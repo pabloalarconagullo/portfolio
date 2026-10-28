@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader, Schibsted_Grotesk } from "next/font/google";
+import { Archivo } from "next/font/google";
 
 import { displayName, site } from "@content/site";
 import { MobileCta } from "@/components/mobile-cta";
@@ -13,17 +13,13 @@ import { baseUrl } from "@/lib/seo";
 
 import "./globals.css";
 
-const grotesk = Schibsted_Grotesk({
+// Una sola familia variable en tres anchuras: expandida para titulares, normal para leer y
+// estrecha en cursiva para las notas del margen.
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-grotesk",
-  display: "swap",
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  style: ["italic"],
-  weight: "400",
-  variable: "--font-newsreader",
+  style: ["normal", "italic"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -57,7 +53,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" data-scroll-behavior="smooth" className={`${grotesk.variable} ${newsreader.variable}`}>
+    <html lang="es" data-scroll-behavior="smooth" className={archivo.variable}>
       <body className="min-h-dvh antialiased">
         <SiteHeader name={site.name} />
         <main id="contenido" tabIndex={-1} className="outline-none">

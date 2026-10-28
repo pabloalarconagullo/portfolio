@@ -35,12 +35,12 @@ export function MobileCta() {
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-rule bg-paper/95 p-3 backdrop-blur-sm transition-transform sm:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-40 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:hidden ${
         hidden ? "translate-y-full" : ""
       }`}
       aria-hidden={hidden}
     >
-      <Link href="/contacto" className="btn btn-primary w-full" tabIndex={hidden ? -1 : undefined}>
+      <Link href="/contacto" className="btn btn-primary w-full shadow-[0_12px_30px_-8px_rgb(29_47_214/0.6)]" tabIndex={hidden ? -1 : undefined}>
         Pedir presupuesto
       </Link>
     </div>

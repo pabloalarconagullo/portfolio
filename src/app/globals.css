@@ -1,19 +1,24 @@
 @import "tailwindcss";
 
 /* ── Tokens ─────────────────────────────────────────────────────────────
-   Papel blanco y tinta azul. El cobalto es el bolígrafo del revisor: solo
-   anota, enlaza y marca el foco. El subrayador marca lo activo.
-   Siempre en claro: el fondo blanco es parte del diseño. */
+   Papel blanco, tinta y un ultramar intenso que es la marca: el bolígrafo que anota
+   y también las superficies grandes (la franja de capturas, el plan destacado, el pie).
+   La lima es el subrayador: marca lo activo y lo que se pulsa.
+   Siempre en claro: el fondo blanco es parte del diseño.
+   (Los nombres --cobalt y --marker se conservan: el cobalto es ahora ultramar y el amarillo, lima.) */
 :root {
   --paper: #ffffff;
-  --paper-2: #f3f4f6;
-  --ink: #18202e;
-  --graphite: #5b6372;
-  --rule: #d9dde3;
-  --cobalt: #2443c4;
-  --marker: #f1d54a;
-  --on-marker: #18202e;
-  --header-h: 4.25rem;
+  --paper-2: #eef1f6;
+  --ink: #0f1420;
+  --graphite: #596273;
+  --rule: #dde1e8;
+  --cobalt: #1d2fd6;
+  --cobalt-deep: #1424a8;
+  --marker: #dcff50;
+  --on-marker: #0f1420;
+  --header-h: 4.75rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
   color-scheme: light;
 }
 
@@ -24,10 +29,11 @@
   --color-graphite: var(--graphite);
   --color-rule: var(--rule);
   --color-cobalt: var(--cobalt);
+  --color-cobalt-deep: var(--cobalt-deep);
   --color-marker: var(--marker);
   --color-on-marker: var(--on-marker);
-  --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-note: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-note: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --breakpoint-margin: 70rem;
 }
 
@@ -54,7 +60,7 @@ body {
   font-family: var(--font-sans);
   font-size: 1.0625rem;
   line-height: 1.6;
-  font-feature-settings: "ss01", "tnum" 0;
+  font-variation-settings: "wdth" 100;
   text-rendering: optimizeLegibility;
 }
 
@@ -66,48 +72,59 @@ body {
 :focus-visible {
   outline: 2px solid var(--cobalt);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 @layer components {
-/* ── Tipografía ───────────────────────────────────────────────────────── */
+/* ── Tipografía ───────────────────────────────────────────────────────────
+   La anchura del tipo es la voz: expandida y pesada para lo que se anuncia, normal para
+   leer, estrecha y en cursiva para lo que se anota. Escala de cuartas (1,333). */
+.t-wide {
+  font-variation-settings: "wdth" var(--wdth, 118);
+}
+
 .t-display {
-  font-size: clamp(2.5rem, 1.4rem + 4.6vw, 5.25rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  font-weight: 700;
+  font-size: clamp(2.3rem, 0.9rem + 3.9vw, 5.25rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+  font-variation-settings: "wdth" var(--wdth, 106);
   text-wrap: balance;
 }
 
 .t-h2 {
-  font-size: clamp(2rem, 1.35rem + 2.6vw, 3.4rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  font-weight: 700;
+  font-size: clamp(2.25rem, 1rem + 4.4vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  font-variation-settings: "wdth" var(--wdth, 115);
   text-wrap: balance;
 }
 
 .t-h3 {
-  font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2.6rem);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.75rem, 1.15rem + 2vw, 2.9rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
   font-weight: 800;
+  font-variation-settings: "wdth" var(--wdth, 110);
   text-wrap: balance;
 }
 
 .t-lead {
-  font-size: clamp(1.15rem, 1.05rem + 0.45vw, 1.4rem);
-  line-height: 1.5;
+  font-size: clamp(1.15rem, 1.02rem + 0.5vw, 1.45rem);
+  line-height: 1.45;
   color: var(--graphite);
   text-wrap: pretty;
 }
 
-/* Voz del revisor: serif cursiva, en cobalto. */
+/* Voz del revisor: la misma familia, estrecha y en cursiva, en ultramar. */
 .t-note {
   font-family: var(--font-note);
   font-style: italic;
-  font-size: 1.075rem;
-  line-height: 1.45;
+  font-size: 1.08rem;
+  font-weight: 450;
+  line-height: 1.4;
+  font-variation-settings: "wdth" 80;
   color: var(--cobalt);
 }
 
@@ -118,7 +135,7 @@ body {
 /* ── Rejilla con margen de notas ──────────────────────────────────────── */
 .shell {
   width: 100%;
-  max-width: 82rem;
+  max-width: 88rem;
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
@@ -126,6 +143,12 @@ body {
 @media (min-width: 48rem) {
   .shell {
     padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  .shell {
+    padding-inline: 3.5rem;
   }
 }
 
@@ -142,64 +165,93 @@ body {
   }
 }
 
+@media (min-width: 90rem) {
+  .with-margin {
+    grid-template-columns: minmax(0, 1fr) 19rem;
+    column-gap: 6rem;
+  }
+}
+
 /* ── Enlaces con subrayador ───────────────────────────────────────────── */
 .link-mark {
   background-image: linear-gradient(var(--marker), var(--marker));
   background-repeat: no-repeat;
-  background-position: 0 88%;
-  background-size: 0% 0.42em;
+  background-position: 0 92%;
+  background-size: 0% 0.5em;
   text-decoration: underline;
-  text-decoration-color: var(--rule);
+  text-decoration-color: color-mix(in oklab, var(--ink) 25%, transparent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.22em;
 }
 
 .link-mark:hover,
 .link-mark[aria-current="true"] {
-  background-size: 100% 0.42em;
+  background-size: 100% 0.5em;
   text-decoration-color: transparent;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .link-mark {
     transition:
-      background-size 380ms cubic-bezier(0.65, 0, 0.35, 1),
+      background-size 420ms var(--ease-io),
       text-decoration-color 200ms;
   }
 }
 
-/* ── Botones ──────────────────────────────────────────────────────────── */
+/* ── Botones ──────────────────────────────────────────────────────────────
+   Píldoras. Al pasar el ratón la lima sube desde abajo como tinta que empapa. */
 .btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  min-height: 3rem;
-  padding: 0.75rem 1.35rem;
-  border-radius: 3px;
-  font-weight: 600;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 650;
   line-height: 1.2;
-  border: 1px solid transparent;
+  letter-spacing: -0.005em;
+  border: 1.5px solid transparent;
   cursor: pointer;
+  background-image: linear-gradient(var(--btn-fill, var(--marker)), var(--btn-fill, var(--marker)));
+  background-repeat: no-repeat;
+  /* El relleno cubre también el borde: si no, queda un aro del color anterior. */
+  background-origin: border-box;
+  background-position: 50% 100%;
+  background-size: 100% 0%;
+}
+
+.btn:hover {
+  background-size: 100% 100%;
+  border-color: var(--btn-fill, var(--marker));
+  color: var(--btn-fill-ink, var(--on-marker));
 }
 
 .btn-primary {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.btn-primary:hover {
-  background: var(--cobalt);
+  background-color: var(--cobalt);
   color: #fff;
 }
 
 .btn-quiet {
-  border-color: var(--rule);
+  border-color: var(--ink);
   color: var(--ink);
+  --btn-fill: var(--ink);
+  --btn-fill-ink: var(--paper);
 }
 
 .btn-quiet:hover {
   border-color: var(--ink);
+}
+
+/* Botón sobre fondo ultramar */
+.btn-on-blue {
+  background-color: var(--marker);
+  color: var(--on-marker);
+  --btn-fill: #fff;
+  --btn-fill-ink: var(--ink);
 }
 
 .btn:disabled {
@@ -210,21 +262,69 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   .btn {
     transition:
-      background-color 180ms,
-      border-color 180ms,
-      color 180ms,
+      background-size 450ms var(--ease-io),
+      background-color 200ms,
+      border-color 200ms,
+      color 250ms,
       transform 180ms;
   }
   .btn:active {
-    transform: translateY(1px);
+    transform: scale(0.97);
   }
 }
+
+/* ── Superficies ──────────────────────────────────────────────────────────
+   Tres radios con jerarquía: escenarios grandes 1.75rem, tarjetas 1.25rem, capturas 0.75rem. */
+.stage {
+  border-radius: 1.75rem;
+  background: var(--paper-2);
+}
+
+.blue-field {
+  background: var(--cobalt);
+  color: #fff;
+}
+
+/* Indicador que se desliza entre opciones (navegación y selector de precios). */
+.slider-pill {
+  position: absolute;
+  top: var(--pill-y, 0.25rem);
+  left: 0;
+  height: var(--pill-h, calc(100% - 0.5rem));
+  width: var(--pill-w, 0);
+  translate: var(--pill-x, 0) 0;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .slider-pill {
+    transition:
+      translate 550ms var(--ease-out),
+      width 550ms var(--ease-out),
+      opacity 200ms;
+  }
+}
+
+/* Títulos que se ensanchan al pasar el ratón: el eje de anchura de la fuente es la interacción. */
+.stretch-hover {
+  font-variation-settings: "wdth" var(--wdth, 100);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stretch-hover {
+    transition: font-variation-settings 600ms var(--ease-out), color 200ms;
+  }
+}
+
+
 
 /* ── Trazos del bolígrafo (capa de anotaciones) ───────────────────────── */
 .ann-path {
   fill: none;
   stroke: var(--cobalt);
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
@@ -248,25 +348,29 @@ body {
   translate: -50% -50%;
   display: grid;
   place-items: center;
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: 999px;
   background: var(--cobalt);
   color: #fff;
-  font-size: 0.78rem;
-  font-weight: 700;
-  box-shadow: 0 0 0 4px color-mix(in oklab, var(--cobalt) 25%, transparent);
+  font-size: 0.8rem;
+  font-weight: 750;
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 7px color-mix(in oklab, var(--cobalt) 22%, transparent),
+    0 8px 20px -6px color-mix(in oklab, var(--cobalt) 60%, transparent);
 }
 
 /* Hero: el texto llega impreso (no se retrasa el LCP); solo el bolígrafo y sus notas entran. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-ink {
-    animation: hero-ink 700ms ease-out both;
+    animation: hero-ink 900ms var(--ease-out) both;
     animation-delay: var(--d, 0ms);
   }
 }
 
 @keyframes hero-ink {
+  /* Solo opacidad: las notas del margen se miden al montar y no deben moverse. */
   from {
     opacity: 0;
   }
@@ -335,8 +439,9 @@ body {
 
   /* Captura que se «revela» como una prueba de imprenta, y después sus marcas */
   /* clip-path solo se interpola entre dos inset(): el estado final también lo es. */
+  /* Recorte negativo en reposo: deja ver la sombra de la captura. */
   html[data-reveal-ready] [data-reveal="figure"] [data-figure] {
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(-6rem -6rem -6rem -6rem);
     transition: clip-path 1100ms cubic-bezier(0.65, 0, 0.35, 1);
   }
 
@@ -345,7 +450,7 @@ body {
   }
 
   html[data-reveal-ready] [data-reveal="figure"][data-pending] [data-figure] {
-    clip-path: inset(0 0 100% 0);
+    clip-path: inset(-6rem -6rem 100% -6rem);
   }
 
   html[data-reveal-ready] [data-reveal="figure"][data-pending] [data-figure] img {
@@ -544,7 +649,7 @@ html:not([data-motion]) .marquee-track > [aria-hidden="true"] {
   gap: 0.4em;
   padding: 0.05em 0.45em;
   border: 1px dashed var(--cobalt);
-  border-radius: 3px;
+  border-radius: 999px;
   color: var(--cobalt);
   font-size: 0.85em;
   font-weight: 500;
@@ -555,10 +660,10 @@ html:not([data-motion]) .marquee-track > [aria-hidden="true"] {
 .field {
   display: block;
   width: 100%;
-  min-height: 3rem;
-  padding: 0.7rem 0.85rem;
-  border: 1px solid var(--rule);
-  border-radius: 3px;
+  min-height: 3.25rem;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #c9ced8;
+  border-radius: 0.75rem;
   background: var(--paper);
   color: var(--ink);
   font: inherit;
@@ -571,6 +676,7 @@ html:not([data-motion]) .marquee-track > [aria-hidden="true"] {
 .field:focus-visible {
   outline-offset: 0;
   border-color: var(--cobalt);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--cobalt) 18%, transparent);
 }
 
 .field[aria-invalid="true"] {
@@ -595,5 +701,65 @@ html:not([data-motion]) .marquee-track > [aria-hidden="true"] {
     width: 1.35rem;
     height: 1.35rem;
     font-size: 0.7rem;
+  }
+}
+
+/* ── Franja ultramar: tira de capturas ────────────────────────────────── */
+.strip-viewport {
+  overflow: hidden;
+}
+
+.strip-card {
+  rotate: var(--tilt, 0deg);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.4) inset,
+    0 30px 60px -20px rgb(4 10 70 / 0.55);
+}
+
+html:not([data-motion]) .marquee-track {
+  padding-inline: 1.25rem;
+}
+
+/* Sombra larga y azulada para las capturas sobre su escenario */
+.shot-shadow {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--ink) 8%, transparent),
+    0 40px 80px -30px color-mix(in oklab, var(--cobalt-deep) 45%, transparent);
+}
+
+/* Palabra gigante del pie: su anchura la mueve el scroll (data-stretch). */
+.wordmark {
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+  font-variation-settings: "wdth" var(--wdth, 125);
+}
+
+/* Fuera de las capas: tiene que ganar a la utilidad [--wdth:…] que fija la anchura de reposo. */
+.group:hover .stretch-hover,
+.group:focus-visible .stretch-hover {
+  --wdth: 125;
+}
+
+/* Sobre ultramar el foco va en lima: el azul no se vería. */
+.blue-field :focus-visible {
+  outline-color: var(--marker);
+}
+
+.footer-link {
+  background-image: linear-gradient(var(--marker), var(--marker));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+}
+
+.footer-link:hover {
+  background-size: 100% 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .footer-link {
+    transition: background-size 420ms var(--ease-io);
   }
 }
