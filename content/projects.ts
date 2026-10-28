@@ -1,7 +1,14 @@
 import type { StaticImageData } from "next/image";
 
+import actasShot from "@/assets/projects/actas.png";
+import clasificadorShot from "@/assets/projects/clasificador.png";
+import elementosEsencialesShot from "@/assets/projects/elementos-esenciales.png";
 import graduadoSocialRedShot from "@/assets/projects/graduado-social-red.png";
+import jobpilotShot from "@/assets/projects/jobpilot.png";
 import jurisprudenciaShot from "@/assets/projects/jurisprudencia.png";
+import lexlaboralShot from "@/assets/projects/lexlaboral.png";
+import localpdfShot from "@/assets/projects/localpdf.png";
+import miDiaShot from "@/assets/projects/mi-dia.png";
 import pabloAlarconShot from "@/assets/projects/pablo-alarcon.png";
 import pablokuShot from "@/assets/projects/pabloku.png";
 import pdfStudioShot from "@/assets/projects/pdf-studio.png";
@@ -10,7 +17,8 @@ import pdfStudioShot from "@/assets/projects/pdf-studio.png";
  * Proyectos del portfolio.
  *
  * Los textos salen de los README de cada carpeta en X:\PABLO\PROYECTO; las capturas son
- * las que generaron sus propias pruebas. No hay fechas, clientes ni cifras de uso porque
+ * las que generaron sus propias pruebas o, si no había, se sacaron arrancando cada app con
+ * datos de ejemplo ficticios (nunca datos reales de clientes). No hay fechas, clientes ni cifras de uso porque
  * no constan en ningún sitio: añádelos tú si quieres mostrarlos.
  *
  * - `visible: false` oculta un proyecto en toda la web (y en el sitemap).
@@ -216,6 +224,10 @@ export const projects: Project[] = [
       { text: "Sin claves ni servicios de IA en tiempo de ejecución: todo se evalúa en el navegador." },
       { text: "El progreso se guarda en el propio navegador (IndexedDB)." },
     ],
+    image: {
+      src: lexlaboralShot,
+      alt: "Expediente abierto en LEXLABORAL: fases de la tramitación a la izquierda y la entrevista inicial con el cliente, con las preguntas disponibles, a la derecha.",
+    },
     links: [],
     visible: true,
   },
@@ -233,6 +245,10 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "React", "TypeScript", "pdf-lib", "MuPDF", "PDF.js", "Vitest"],
     notes: [{ text: "El servidor auxiliar solo escucha en 127.0.0.1." }],
+    image: {
+      src: localpdfShot,
+      alt: "Portada de LocalPDF con el titular «Todas tus herramientas PDF en un solo lugar» y una zona para soltar archivos que se leen en el propio navegador.",
+    },
     links: [],
     visible: true,
   },
@@ -251,6 +267,10 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "React", "TypeScript", "Supabase", "Stripe", "Claude API", "Vitest", "Playwright"],
     notes: [{ text: "Interfaz preparada para varios idiomas." }],
+    image: {
+      src: jobpilotShot,
+      alt: "Portada de JobPilot AI con un ejemplo de análisis de compatibilidad entre un CV y una oferta: puntuación, requisitos demostrados, por confirmar y ausentes.",
+    },
     links: [],
     visible: true,
   },
@@ -268,6 +288,10 @@ export const projects: Project[] = [
     ],
     stack: ["Node.js", "Claude API", "IMAP"],
     notes: [{ text: "El correo solo se lee: no marca mensajes como leídos ni borra nada." }],
+    image: {
+      src: clasificadorShot,
+      alt: "Bandeja de notificaciones con datos ficticios: contadores por urgencia y una lista ordenada por vencimiento con organismo, expediente y qué hay que hacer.",
+    },
     links: [],
     visible: true,
   },
@@ -281,6 +305,10 @@ export const projects: Project[] = [
     features: ["Grabación y transcripción local", "Acta estructurada a partir de la transcripción", "Instalable y con datos en el dispositivo"],
     stack: ["JavaScript", "Whisper en local", "IndexedDB", "Claude API"],
     notes: [{ text: "El audio del cliente no sale del equipo." }],
+    image: {
+      src: actasShot,
+      alt: "Reunión de ejemplo en Actas: notas del profesional a la izquierda y el acta generada a la derecha, con plazos, tareas y puntos clave.",
+    },
     links: [],
     visible: true,
   },
@@ -299,6 +327,10 @@ export const projects: Project[] = [
     ],
     stack: ["JavaScript", "PWA", "Google APIs", "Supabase", "Claude API"],
     notes: [{ text: "Sin compilación: HTML, CSS y JavaScript estáticos." }],
+    image: {
+      src: miDiaShot,
+      alt: "Pantalla de inicio de Mi Día con datos de ejemplo: agenda del día, recordatorios y racha de deporte.",
+    },
     links: [],
     visible: true,
   },
@@ -316,6 +348,10 @@ export const projects: Project[] = [
     ],
     stack: ["JavaScript", "HTML", "CSS"],
     notes: [{ text: "Los datos se guardan solo en el navegador del equipo." }],
+    image: {
+      src: elementosEsencialesShot,
+      alt: "Panel de cumplimiento con datos de ejemplo: contadores de empresas, contratos e incidencias y la lista de tareas y alertas por persona.",
+    },
     links: [],
     visible: true,
   },

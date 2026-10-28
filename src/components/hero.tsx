@@ -3,6 +3,7 @@ import Link from "next/link";
 import { site } from "@content/site";
 
 import { AnnotationLayer } from "./annotation-layer";
+import { Logo } from "./logo";
 import { AnchoredText, NoteList } from "./notes";
 import { Pending } from "./pending";
 
@@ -20,9 +21,7 @@ export function Hero() {
         <div className="with-margin margin:gap-y-0">
           <div className="margin:col-start-1 margin:row-start-1">
             <div className="hero-ink mb-7 flex items-center gap-3.5 md:mb-9" style={{ ["--d" as string]: "100ms" }}>
-              <span aria-hidden="true" className="grid size-11 shrink-0 place-items-center rounded-full bg-cobalt">
-                <span className="size-3 rotate-45 bg-marker" />
-              </span>
+              <Logo className="size-12 shrink-0" />
               <p className="text-[0.95rem] leading-snug">
                 <span className="block font-semibold">
                   {site.name ?? <Pending what="tu nombre" />}

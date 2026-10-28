@@ -34,7 +34,7 @@ discontinuo, para que no se publique sin querer.
 | `content/site.ts` | Rol y presentación «Sobre mí» (**PROPUESTOS**), nombre, ubicación, **dominio** (`url`), correo, canales (WhatsApp, agenda…), perfiles, disponibilidad, rangos de presupuesto y datos legales (titular, NIF, dirección). |
 | `content/site.ts` → `hero` | Titular, entradilla y notas al margen. Textos **PROPUESTOS**: cámbialos por los tuyos. `[texto](id)` anota una palabra con la nota de ese `id`. |
 | `content/services.ts` | Servicios, entregables y pasos del proceso. Textos **PROPUESTOS**. |
-| `content/projects.ts` | Proyectos. Los textos salen de los README de tus carpetas en `X:\PABLO\PROYECTO` y las capturas de sus propias pruebas. Revisa que todo sea publicable. |
+| `content/projects.ts` | Proyectos. Los textos salen de los README de tus carpetas en `X:\PABLO\PROYECTO` y las capturas de sus propias pruebas o de la app arrancada en local con datos de ejemplo ficticios. Revisa que todo sea publicable. |
 | `src/app/privacidad`, `src/app/aviso-legal` | Textos legales **provisionales**: revísalos antes de publicar. |
 
 ### Proyectos: puntos a revisar antes de publicar
@@ -47,7 +47,9 @@ discontinuo, para que no se publique sin querer.
   `https://quien-ha-matado-a-dodi.vercel.app` (la URL que declara el propio juego).
 - **Repositorios privados**: ningún proyecto enlaza a código. Añade enlaces en `links` solo si son públicos.
 - No hay fechas, clientes, testimonios ni cifras de uso: no constan en ningún sitio. Añádelos solo si son reales.
-- Solo cinco proyectos tienen captura (las dos webs publicadas, PDF Studio, Jurisprudencia y el juego). Para destacar otro a página completa,
+- Todos los proyectos tienen captura salvo la web de la asesoría. Las de LEXLABORAL, LocalPDF, JobPilot, Clasificador, Actas,
+  Mi Día y Elementos esenciales se tomaron el 28-10-2026 arrancando cada app en local; las que necesitan datos llevan
+  datos de ejemplo ficticios (en el clasificador, sobre una copia aislada, sin la base de datos real). Para destacar otro a página completa,
   añade su captura en `src/assets/projects/`, impórtala en `content/projects.ts`, pon `featured: true` y, si quieres,
   notas con `at: { x, y }` (porcentaje sobre la imagen).
 
