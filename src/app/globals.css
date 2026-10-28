@@ -1,0 +1,524 @@
+@import "tailwindcss";
+
+/* ── Tokens ─────────────────────────────────────────────────────────────
+   Papel frío y tinta azul. El cobalto es el bolígrafo del revisor: solo
+   anota, enlaza y marca el foco. El subrayador marca lo activo. */
+:root {
+  --paper: #edeff1;
+  --paper-2: #e3e6ea;
+  --ink: #18202e;
+  --graphite: #5e6675;
+  --rule: #c8cdd5;
+  --cobalt: #2443c4;
+  --marker: #f1d54a;
+  --on-marker: #18202e;
+  --header-h: 4.25rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #141a26;
+    --paper-2: #1b2232;
+    --ink: #e6e9ee;
+    --graphite: #9aa3b2;
+    --rule: #2d3647;
+    --cobalt: #7c93ff;
+    --marker: #e8c93a;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-graphite: var(--graphite);
+  --color-rule: var(--rule);
+  --color-cobalt: var(--cobalt);
+  --color-marker: var(--marker);
+  --color-on-marker: var(--on-marker);
+  --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-note: var(--font-newsreader), ui-serif, Georgia, serif;
+  --breakpoint-margin: 70rem;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+html {
+  scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-feature-settings: "ss01", "tnum" 0;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--marker);
+  color: var(--on-marker);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@layer components {
+/* ── Tipografía ───────────────────────────────────────────────────────── */
+.t-display {
+  font-size: clamp(2.5rem, 1.4rem + 4.6vw, 5.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.t-h2 {
+  font-size: clamp(2rem, 1.35rem + 2.6vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.t-h3 {
+  font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+.t-lead {
+  font-size: clamp(1.15rem, 1.05rem + 0.45vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--graphite);
+  text-wrap: pretty;
+}
+
+/* Voz del revisor: serif cursiva, en cobalto. */
+.t-note {
+  font-family: var(--font-note);
+  font-style: italic;
+  font-size: 1.075rem;
+  line-height: 1.45;
+  color: var(--cobalt);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Rejilla con margen de notas ──────────────────────────────────────── */
+.shell {
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+.with-margin {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 70rem) {
+  .with-margin {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+    column-gap: 5rem;
+  }
+}
+
+/* ── Enlaces con subrayador ───────────────────────────────────────────── */
+.link-mark {
+  background-image: linear-gradient(var(--marker), var(--marker));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 0% 0.42em;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.link-mark:hover,
+.link-mark[aria-current="true"] {
+  background-size: 100% 0.42em;
+  text-decoration-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .link-mark {
+    transition:
+      background-size 380ms cubic-bezier(0.65, 0, 0.35, 1),
+      text-decoration-color 200ms;
+  }
+}
+
+/* ── Botones ──────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.35rem;
+  border-radius: 3px;
+  font-weight: 600;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-primary:hover {
+  background: var(--cobalt);
+  color: #fff;
+}
+
+.btn-quiet {
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+.btn-quiet:hover {
+  border-color: var(--ink);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn {
+    transition:
+      background-color 180ms,
+      border-color 180ms,
+      color 180ms,
+      transform 180ms;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+}
+
+/* ── Trazos del bolígrafo (capa de anotaciones) ───────────────────────── */
+.ann-path {
+  fill: none;
+  stroke: var(--cobalt);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.ann-drawn .ann-path {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ann-path {
+    transition: stroke-dashoffset 900ms cubic-bezier(0.65, 0, 0.35, 1);
+    transition-delay: calc(var(--i, 0) * 180ms + var(--base, 120ms));
+  }
+}
+
+/* Marcas numeradas sobre capturas */
+.hotspot {
+  position: absolute;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: var(--cobalt);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--cobalt) 25%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .hotspot {
+    color: #0d1220;
+  }
+}
+
+/* Hero: el texto llega impreso (no se retrasa el LCP); solo el bolígrafo y sus notas entran. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-ink {
+    animation: hero-ink 700ms ease-out both;
+    animation-delay: var(--d, 0ms);
+  }
+}
+
+@keyframes hero-ink {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ── Entradas al hacer scroll ─────────────────────────────────────────
+   RevealObserver marca con data-pending lo que espera fuera de la pantalla; sin JS o con
+   «reducir movimiento» no se oculta nada.
+   Variantes: por defecto el bloque sube; «fade» solo aparece (para lo que se mide, como las notas); «figure» revela la captura de arriba abajo y luego
+   aparecen sus marcas; «rule» dibuja el filete superior; «portrait» descubre la foto.
+   --i escalona elementos hermanos. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-reveal-ready] [data-reveal] {
+    --reveal-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  html[data-reveal-ready] [data-reveal=""][data-pending],
+  html[data-reveal-ready] [data-reveal="rule"][data-pending] > * {
+    opacity: 0;
+    translate: 0 1.75rem;
+  }
+
+  html[data-reveal-ready] [data-reveal=""],
+  html[data-reveal-ready] [data-reveal="rule"] > * {
+    transition:
+      opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+      translate 900ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay);
+  }
+
+  html[data-reveal-ready] [data-reveal="rule"] > * {
+    transition-delay: calc(var(--reveal-delay) + 250ms);
+  }
+
+  /* Filete que se dibuja de izquierda a derecha */
+  html[data-reveal-ready] [data-reveal="rule"] {
+    position: relative;
+    /* El filete real lo pone una utilidad (border-t): se oculta mientras se dibuja el de ::before. */
+    border-top-color: transparent !important;
+  }
+
+  html[data-reveal-ready] [data-reveal="rule"]::before {
+    content: "";
+    position: absolute;
+    inset: -1px 0 auto 0;
+    height: 1px;
+    background: var(--ink);
+    transform-origin: 0 50%;
+    scale: 0 1;
+    transition: scale 1000ms cubic-bezier(0.65, 0, 0.35, 1);
+    transition-delay: var(--reveal-delay);
+  }
+
+  html[data-reveal-ready] [data-reveal="fade"] {
+    transition: opacity 800ms ease-out;
+    transition-delay: var(--reveal-delay);
+  }
+
+  html[data-reveal-ready] [data-reveal="fade"][data-pending] {
+    opacity: 0;
+  }
+
+  html[data-reveal-ready] [data-reveal="rule"]:not([data-pending])::before {
+    scale: 1 1;
+  }
+
+  /* Captura que se «revela» como una prueba de imprenta, y después sus marcas */
+  /* clip-path solo se interpola entre dos inset(): el estado final también lo es. */
+  html[data-reveal-ready] [data-reveal="figure"] [data-figure] {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 1100ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  html[data-reveal-ready] [data-reveal="figure"] [data-figure] img {
+    transition: scale 1600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html[data-reveal-ready] [data-reveal="figure"][data-pending] [data-figure] {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  html[data-reveal-ready] [data-reveal="figure"][data-pending] [data-figure] img {
+    scale: 1.06;
+  }
+
+  html[data-reveal-ready] [data-reveal="figure"] .hotspot {
+    transition:
+      scale 500ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 300ms;
+    transition-delay: calc(900ms + var(--hotspot, 0) * 140ms);
+  }
+
+  html[data-reveal-ready] [data-reveal="figure"][data-pending] .hotspot {
+    scale: 0;
+    opacity: 0;
+  }
+
+  /* Retrato: se descubre de abajo arriba */
+  html[data-reveal-ready] [data-reveal="portrait"] {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 1200ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  html[data-reveal-ready] [data-reveal="portrait"][data-pending] {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+
+/* Al cambiar de grupo de precios, el contenido de cada columna entra de nuevo */
+@media (prefers-reduced-motion: no-preference) {
+  .plan-swap {
+    animation: plan-swap 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes plan-swap {
+  from {
+    opacity: 0;
+    translate: 0 0.75rem;
+  }
+}
+
+@media print {
+  [data-reveal],
+  [data-reveal] * {
+    opacity: 1 !important;
+    translate: none !important;
+    clip-path: none !important;
+  }
+}
+
+/* Paso entre páginas: la captura del proyecto viaja de la portada a su caso */
+::view-transition-group(.morph) {
+  animation-duration: 450ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+
+@keyframes via-blur {
+  30% {
+    filter: blur(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Barra de lectura en los casos de estudio (solo CSS, progresiva) */
+.read-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .read-progress {
+      display: block;
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: var(--cobalt);
+      transform-origin: 0 50%;
+      z-index: 60;
+      animation: read-progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes read-progress {
+  from {
+    scale: 0 1;
+  }
+}
+
+/* Contenido provisional: siempre visible para que no se publique sin querer */
+.pending {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+  padding: 0.05em 0.45em;
+  border: 1px dashed var(--cobalt);
+  border-radius: 3px;
+  color: var(--cobalt);
+  font-size: 0.85em;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* ── Campos de formulario ─────────────────────────────────────────────── */
+.field {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.field:hover {
+  border-color: var(--graphite);
+}
+
+.field:focus-visible {
+  outline-offset: 0;
+  border-color: var(--cobalt);
+}
+
+.field[aria-invalid="true"] {
+  border-color: var(--cobalt);
+  border-width: 2px;
+}
+
+}
+
+/* Sin margen (móvil y tableta) no hay trazos dibujados: el subrayado lo pone CSS. */
+@media (max-width: 69.99rem) {
+  [data-anchor]:not([data-point]) {
+    text-decoration: underline;
+    text-decoration-color: var(--cobalt);
+    text-decoration-thickness: max(0.05em, 1.5px);
+    text-underline-offset: 0.14em;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .hotspot {
+    width: 1.35rem;
+    height: 1.35rem;
+    font-size: 0.7rem;
+  }
+}
