@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
 
-import { formatPrice, pricing } from "@content/pricing";
+import { formatPrice, formatPriceWithVat, pricing } from "@content/pricing";
 
 import { AnimatedPrice } from "./motion/animated-price";
 import { Pending } from "./pending";
@@ -92,6 +92,12 @@ export function PricingSection() {
                   <span className={plan.featured ? "text-white/85" : "text-graphite"}>/{plan.per}</span>
                 )}
               </p>
+              {plan.price !== null && (
+                <p className={`num mt-2 text-sm ${plan.featured ? "text-white/85" : "text-graphite"}`}>
+                  {formatPriceWithVat(plan)}
+                  {plan.per && `/${plan.per}`} con IVA incluido
+                </p>
+              )}
 
               <ul
                 className={`mb-9 mt-8 flex grow flex-col gap-2.5 border-t pt-7 ${

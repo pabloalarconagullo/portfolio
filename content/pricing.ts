@@ -3,7 +3,10 @@
  *
  * Importes y contenido de cada plan indicados por ti (tomados como referencia de websbybaltuki.com).
  * Antes de publicar, revisa que puedes cumplir todo lo que incluye cada plan (hosting y dominio
- * incluidos, soporte 24/7, horas de desarrollo…) y si los precios llevan IVA.
+ * incluidos, soporte 24/7, horas de desarrollo…).
+ *
+ * Los importes van sin IVA (lo habitual al facturar a profesionales y empresas) y cada plan muestra
+ * debajo su total con IVA, porque a un consumidor hay que enseñarle el precio final con impuestos.
  *
  * - `price: null` muestra «Hablemos» en lugar de una cifra.
  * - `featured: true` marca el plan como «Más popular» (uno por grupo).
@@ -28,11 +31,12 @@ export type PlanGroup = {
 };
 
 export const pricing = {
+  /** Tipo de IVA que se suma a los importes (general, 21 %). */
+  vatRate: 0.21,
   /**
-   * Aclaración fiscal bajo los precios, p. ej. «Precios sin IVA (21 %)» o «IVA incluido».
-   * Mientras sea `null` se muestra «Pendiente».
+   * Aclaración fiscal bajo los precios. Mientras sea `null` se muestra «Pendiente».
    */
-  taxNote: null as string | null,
+  taxNote: "Precios sin IVA. Bajo cada importe tienes el total con el 21 % de IVA incluido." as string | null,
   groups: [
     {
       id: "diseno",
@@ -147,6 +151,15 @@ export function formatPrice(plan: Plan) {
   return plan.price === null ? "Hablemos" : euros.format(plan.price);
 }
 
+const eurosCents = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", minimumFractionDigits: 2 });
+
+/** Total con IVA, p. ej. «423,50 €» (sin decimales si es exacto). `null` si el plan no tiene importe. */
+export function formatPriceWithVat(plan: Plan) {
+  if (plan.price === null) return null;
+  const total = Math.round(plan.price * (1 + pricing.vatRate) * 100) / 100;
+  return Number.isInteger(total) ? euros.format(total) : eurosCents.format(total);
+}
+
 /** Plan por id, con el nombre de su grupo (para el formulario de contacto). */
 export function getPlan(id: string) {
   for (const group of pricing.groups) {
@@ -157,6 +170,6 @@ export function getPlan(id: string) {
 }
 
 export function planLabel(plan: Plan & { group: string }) {
-  const price = plan.price === null ? "" : ` (${formatPrice(plan)}${plan.per ? `/${plan.per}` : ""})`;
+  const price = plan.price === null ? "" : ` (${formatPrice(plan)}${plan.per ? `/${plan.per}` : ""} + IVA)`;
   return `${plan.name} · ${plan.group}${price}`;
 }

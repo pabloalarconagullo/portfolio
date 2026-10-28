@@ -245,10 +245,11 @@ test("precios: el selector cambia de grupo y cada plan llega al formulario", asy
   await expect(hosting).toHaveAttribute("aria-pressed", "true");
   await expect(planes).toContainText("200 €");
   await expect(planes).toContainText("/año");
+  await expect(planes).toContainText("423,50 €/año con IVA incluido");
 
   await page.getByRole("link", { name: /^Elegir este plan: Profesional/ }).click();
   await expect(page).toHaveURL(/\/contacto\?plan=mantenimiento-profesional$/);
-  await expect(page.getByText("Te interesa el plan")).toContainText("Profesional · Hosting y mantenimiento (350 €/año)");
+  await expect(page.getByText("Te interesa el plan")).toContainText("Profesional · Hosting y mantenimiento (350 €/año + IVA)");
   await page.getByRole("button", { name: "Quitar plan" }).click();
   await expect(page.getByText("Te interesa el plan")).toHaveCount(0);
 });
