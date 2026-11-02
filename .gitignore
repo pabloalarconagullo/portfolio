@@ -52,3 +52,11 @@ Thumbs.db
 /test-results/
 /playwright-report/
 !.env.example
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
