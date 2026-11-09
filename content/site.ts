@@ -29,7 +29,7 @@ export const site = {
   /** Ciudad o zona desde la que trabajas. Opcional. */
   location: "Elche, Alicante" as string | null,
   /** Dominio definitivo, sin barra final. Se usa para SEO, sitemap y redes sociales. */
-  url: null as string | null,
+  url: "https://portfolio-pablo.pabloalarcon.workers.dev" as string | null,
   /** Idioma principal del sitio. */
   locale: "es_ES",
 
