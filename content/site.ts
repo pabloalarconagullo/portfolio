@@ -34,7 +34,7 @@ export const site = {
   locale: "es_ES",
 
   /** Correo de contacto público. Si es `null`, no se ofrece contacto por correo. */
-  email: null as string | null,
+  email: "contacto@graduadosocialred.es" as string | null,
   /** Otros canales opcionales (WhatsApp, teléfono, agenda de citas…). */
   channels: [] as ContactChannel[],
   /** Perfiles públicos opcionales (GitHub, LinkedIn…). */
