@@ -389,6 +389,7 @@ export const projects: Project[] = [
   },
   {
     slug: "jarvis",
+    featured: true,
     title: "JARVIS",
     kinds: ["pwa", "local"],
     summary: "Asistente personal que corre en mi ordenador y se usa desde el móvil como app instalable.",
@@ -418,6 +419,7 @@ export const projects: Project[] = [
   },
   {
     slug: "reaccion-inversa",
+    featured: true,
     title: "Reacción inversa",
     kinds: ["web"],
     summary: "Puzle diario para el navegador: adivina qué bola se lanzó para provocar la reacción en cadena.",
@@ -443,6 +445,7 @@ export const projects: Project[] = [
   },
   {
     slug: "panel-visitas",
+    featured: true,
     title: "Panel de visitas de la web",
     kinds: ["local"],
     summary: "Panel personal que cruza Google Search Console y Analytics para ver cómo llegan visitas a la web y qué publicar después.",
@@ -468,6 +471,7 @@ export const projects: Project[] = [
   },
   {
     slug: "trading-simulator-pro",
+    featured: true,
     title: "Trading Simulator Pro",
     kinds: ["web", "pwa"],
     summary: "Simulador de bolsa personal con dinero ficticio: órdenes, cartera, estadísticas y precios de fuentes gratuitas.",
@@ -498,6 +502,7 @@ export const projects: Project[] = [
   },
   {
     slug: "pricepilot",
+    featured: true,
     title: "PricePilot",
     kinds: ["movil"],
     summary: "Comparador de precios para Android: «Nunca compres caro».",
@@ -524,6 +529,7 @@ export const projects: Project[] = [
   },
   {
     slug: "all4plans",
+    featured: true,
     title: "All4Plans",
     kinds: ["movil"],
     summary: "App móvil para organizar planes y viajes en grupo, con el reparto de gastos incluido.",
@@ -550,6 +556,7 @@ export const projects: Project[] = [
   },
   {
     slug: "web-boda",
+    featured: true,
     title: "Web de boda",
     kinds: ["web"],
     summary: "Web de boda con invitación, cuenta atrás, confirmación de asistencia y panel para los novios.",
