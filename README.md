@@ -49,7 +49,9 @@ discontinuo, para que no se publique sin querer.
 - No hay fechas, clientes, testimonios ni cifras de uso: no constan en ningún sitio. Añádelos solo si son reales.
 - Todos los proyectos tienen captura salvo la web de la asesoría. Las de LEXLABORAL, LocalPDF, JobPilot, Clasificador, Actas,
   Mi Día y Elementos esenciales se tomaron el 28-10-2026 arrancando cada app en local; las que necesitan datos llevan
-  datos de ejemplo ficticios (en el clasificador, sobre una copia aislada, sin la base de datos real). Para destacar otro a página completa,
+  datos de ejemplo ficticios (en el clasificador, sobre una copia aislada, sin la base de datos real). La web profesional y Caso Dodi
+  se recapturaron el 12-11-2026 con su versión actual; JARVIS (con un usuario de demostración y una base de datos vacía en una
+  carpeta temporal), Reacción inversa y el Panel de visitas (con sus datos de demostración) también son de esa fecha. Para destacar otro a página completa,
   añade su captura en `src/assets/projects/`, impórtala en `content/projects.ts`, pon `featured: true` y, si quieres,
   notas con `at: { x, y }` (porcentaje sobre la imagen).
 

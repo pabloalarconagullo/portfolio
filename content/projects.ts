@@ -4,6 +4,7 @@ import actasShot from "@/assets/projects/actas.png";
 import clasificadorShot from "@/assets/projects/clasificador.png";
 import elementosEsencialesShot from "@/assets/projects/elementos-esenciales.png";
 import graduadoSocialRedShot from "@/assets/projects/graduado-social-red.png";
+import jarvisShot from "@/assets/projects/jarvis.png";
 import jobpilotShot from "@/assets/projects/jobpilot.png";
 import jurisprudenciaShot from "@/assets/projects/jurisprudencia.png";
 import lexlaboralShot from "@/assets/projects/lexlaboral.png";
@@ -11,7 +12,9 @@ import localpdfShot from "@/assets/projects/localpdf.png";
 import miDiaShot from "@/assets/projects/mi-dia.png";
 import pabloAlarconShot from "@/assets/projects/pablo-alarcon.png";
 import pablokuShot from "@/assets/projects/pabloku.png";
+import panelVisitasShot from "@/assets/projects/panel-visitas.png";
 import pdfStudioShot from "@/assets/projects/pdf-studio.png";
+import reaccionInversaShot from "@/assets/projects/reaccion-inversa.png";
 
 /**
  * Proyectos del portfolio.
@@ -66,23 +69,25 @@ export const projects: Project[] = [
     slug: "pablo-alarcon",
     title: "Web profesional de Graduado Social",
     kinds: ["web"],
-    summary: "Mi web como Graduado Social en Elche y Alicante, con calculadora de indemnización por despido.",
+    summary: "Mi web como Graduado Social en Elche y Alicante, con calculadoras de despido y finiquito y un asistente de plazos.",
     problem:
       "Explicar a trabajadores y empresas, sin letra pequeña, en qué puedo ayudarles con contratos, nóminas, despidos o una inspección, y facilitar que cuenten su caso.",
     features: [
-      "Once páginas de servicio: despido, reclamación de cantidad, sanciones, Inspección de Trabajo…",
+      "Páginas de servicio: despido, reclamación de cantidad, sanciones, Inspección de Trabajo…",
       "Calculadora de indemnización por despido improcedente u objetivo",
+      "Calculadora de finiquito y una página específica para empresas",
+      "Asistente «¿Qué hago con mi caso?» que orienta sobre plazos y el siguiente paso",
       "Formulario de contacto con el asunto ya elegido desde cada servicio",
       "Preguntas frecuentes y datos estructurados para buscadores",
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP", "Lenis", "Motion", "Resend"],
     notes: [
-      { text: "La cifra se calcula en el navegador: no se envía ningún dato.", at: { x: 62.4, y: 26.6 } },
+      { text: "La cifra se calcula en el navegador: no se envía ningún dato.", at: { x: 75, y: 21 } },
       {
         text: "Tramo de 45 días antes del 12/02/2012 y topes de 720 y 1.260 días (art. 56 y DT 11.ª ET).",
-        at: { x: 62.4, y: 50 },
+        at: { x: 80, y: 41 },
       },
-      { text: "El botón abre el formulario con el asunto «Despido» ya elegido.", at: { x: 62.4, y: 68.3 } },
+      { text: "El botón abre el formulario con el asunto «Despido» ya elegido.", at: { x: 63.6, y: 49 } },
     ],
     image: {
       src: pabloAlarconShot,
@@ -180,26 +185,27 @@ export const projects: Project[] = [
   },
   {
     slug: "pabloku",
-    title: "¿Quién ha matado a Dodi?",
+    title: "Caso Dodi",
     kinds: ["juego", "web", "pwa"],
-    summary: "Juego web de deducción: colocas a cada sospechoso en el plano y descubres al culpable.",
+    summary: "Juego web de deducción con aspecto de expediente policial: colocas a cada sospechoso en el plano y descubres al culpable.",
     problem:
       "Un puzle de lógica para jugar en el navegador, también sin conexión, con un caso nuevo cada día y clasificación opcional.",
     features: [
       "Casos por épocas con distintos niveles de dificultad",
+      "Modos clásico, contrarreloj y práctica, y el especial «Un testigo miente»",
       "Pistas con coste en la puntuación y modo notas",
       "Caso del día con clasificación opcional",
       "Funciona sin conexión e instalable como aplicación",
     ],
     stack: ["React", "TypeScript", "Vite", "Zustand", "Tailwind CSS", "Supabase", "Vitest", "Playwright"],
     notes: [
-      { text: "Cada pista resta puntuación: el jugador decide cuándo pedirla.", at: { x: 89.5, y: 20.5 } },
+      { text: "Cada pista resta puntuación: el jugador decide cuándo pedirla.", at: { x: 89.5, y: 25 } },
       { text: "El tablero lo valida un motor de reglas propio, con pruebas unitarias.", at: { x: 54, y: 43 } },
       { text: "La clasificación del caso del día se valida en el servidor." },
     ],
     image: {
       src: pablokuShot,
-      alt: "Partida de «¿Quién ha matado a Dodi?»: fichas de sospechosos a la izquierda, plano de la escena en cuadrícula en el centro y controles de pistas a la derecha.",
+      alt: "Partida de Caso Dodi: fichas de sospechosos a la izquierda, plano de la escena en el centro, con sus casillas y objetos, y a la derecha los controles de pistas, notas y validación.",
     },
     links: [{ label: "Jugar", href: "https://quien-ha-matado-a-dodi.vercel.app" }],
     credit: "Basado en Murdoku, el puzle de asesinatos creado por Manuel Garand.",
@@ -373,6 +379,85 @@ export const projects: Project[] = [
       { text: "Analítica solo tras el consentimiento; sin él no se carga." },
       { text: "Transiciones entre páginas con View Transitions de React." },
     ],
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "jarvis",
+    title: "JARVIS",
+    kinds: ["pwa", "local"],
+    summary: "Asistente personal que corre en mi ordenador y se usa desde el móvil como app instalable.",
+    problem:
+      "Tener en un solo sitio la agenda, las finanzas, los documentos y el correo, con un asistente que trabaja en local: un modelo instalado en el propio ordenador, y la nube solo si la activo.",
+    features: [
+      "Chat por voz y por texto con un modelo local (Ollama)",
+      "Memoria revisable: lo que deduce del chat queda «sin confirmar» hasta que lo aprueba",
+      "Agenda, tareas, viajes y lista de la compra",
+      "Finanzas con importación de extractos en CSV o Excel y vista previa antes de guardar",
+      "Documentos con OCR local y búsqueda dentro del texto",
+      "Correo y Telegram: enviar siempre lo confirma el usuario",
+      "Copias de seguridad nocturnas que se comprueban",
+    ],
+    stack: ["Python", "FastAPI", "SQLite", "React", "TypeScript", "Vite", "Ollama", "Tailscale"],
+    notes: [
+      { text: "Pulsa el núcleo para hablar o escribe: Jarvis responde hablando y vuelve a escuchar.", at: { x: 45.5, y: 31 } },
+      { text: "Estado del servidor y de la base de datos, siempre a la vista.", at: { x: 80.5, y: 42 } },
+      { text: "Cada cuenta se crea desde la consola: no hay registro público." },
+    ],
+    image: {
+      src: jarvisShot,
+      alt: "Inicio de JARVIS en modo oscuro con un usuario de demostración: saludo, núcleo de voz para hablar con el asistente, campo para escribir, accesos a agenda y finanzas y el estado del servidor.",
+    },
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "reaccion-inversa",
+    title: "Reacción inversa",
+    kinds: ["web"],
+    summary: "Puzle diario para el navegador: adivina qué bola se lanzó para provocar la reacción en cadena.",
+    problem:
+      "Un puzle de lógica con un reto nuevo cada día, en tres intentos, y un generador que comprueba que solo un lanzamiento produce el tablero final.",
+    features: [
+      "Reto diario con racha y opción de compartir el resultado",
+      "Modo práctica para seguir jugando fuera del reto",
+      "Bolas que chocan, muros, flechas, hoyos y bombas que explotan en cadena",
+    ],
+    stack: ["JavaScript", "HTML", "CSS", "Node.js (node:test)"],
+    notes: [
+      { text: "Sin dependencias: HTML, CSS y módulos de JavaScript." },
+      { text: "La semilla de cada puzle es la fecha del reto, así todos juegan el mismo tablero." },
+      { text: "Las pruebas del motor comprueban las reglas y que cada puzle tenga solución única." },
+    ],
+    image: {
+      src: reaccionInversaShot,
+      alt: "Reto del día de Reacción inversa: arriba, cómo acabó el tablero con las bolas y los huecos; abajo, el tablero inicial, donde hay que tocar la bola que se movió.",
+    },
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "panel-visitas",
+    title: "Panel de visitas de la web",
+    kinds: ["local"],
+    summary: "Panel personal que cruza Google Search Console y Analytics para ver cómo llegan visitas a la web y qué publicar después.",
+    problem:
+      "Saber cada día si la web aparece en Google, qué páginas conviene publicar o mejorar y si una caída coincide con una tanda de publicaciones, sin entrar en varios paneles distintos.",
+    features: [
+      "Evolución diaria de las veces que la web aparece en Google",
+      "Páginas del sitemap publicadas cada día frente a las caídas",
+      "Lista «Qué hacer ahora»: publicar, mejorar o revisar, por rentabilidad",
+      "Origen de las visitas y aviso de caída",
+    ],
+    stack: ["Node.js", "Google Search Console", "Google Analytics", "HTML"],
+    notes: [
+      { text: "Genera una página HTML que se abre en el navegador, sin servidor propio." },
+      { text: "Las cifras reales se leen con una cuenta de servicio de Google; la captura usa datos de ejemplo." },
+    ],
+    image: {
+      src: panelVisitasShot,
+      alt: "Panel de visitas con datos de ejemplo: titular con los clics desde Google, tres cifras clave, un aviso de datos de ejemplo y la gráfica diaria de apariciones en Google con las publicaciones del sitemap debajo.",
+    },
     links: [],
     visible: true,
   },
