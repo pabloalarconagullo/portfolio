@@ -14,7 +14,11 @@ import pabloAlarconShot from "@/assets/projects/pablo-alarcon.png";
 import pablokuShot from "@/assets/projects/pabloku.png";
 import panelVisitasShot from "@/assets/projects/panel-visitas.png";
 import pdfStudioShot from "@/assets/projects/pdf-studio.png";
+import all4plansShot from "@/assets/projects/all4plans.png";
+import pricepilotShot from "@/assets/projects/pricepilot.png";
 import reaccionInversaShot from "@/assets/projects/reaccion-inversa.png";
+import tradingSimulatorShot from "@/assets/projects/trading-simulator-pro.png";
+import webBodaShot from "@/assets/projects/web-boda.png";
 
 /**
  * Proyectos del portfolio.
@@ -29,7 +33,7 @@ import reaccionInversaShot from "@/assets/projects/reaccion-inversa.png";
  * - `notes[].at` coloca la nota sobre la captura (porcentaje desde la esquina superior izquierda).
  */
 
-export type ProjectKind = "web" | "escritorio" | "local" | "pwa" | "juego";
+export type ProjectKind = "web" | "escritorio" | "local" | "pwa" | "juego" | "movil";
 
 export const kindLabels: Record<ProjectKind, string> = {
   web: "Web",
@@ -37,6 +41,7 @@ export const kindLabels: Record<ProjectKind, string> = {
   local: "Funciona en local",
   pwa: "Instalable (PWA)",
   juego: "Juego",
+  movil: "App móvil",
 };
 
 export type ProjectNote = {
@@ -457,6 +462,115 @@ export const projects: Project[] = [
     image: {
       src: panelVisitasShot,
       alt: "Panel de visitas con datos de ejemplo: titular con los clics desde Google, tres cifras clave, un aviso de datos de ejemplo y la gráfica diaria de apariciones en Google con las publicaciones del sitemap debajo.",
+    },
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "trading-simulator-pro",
+    title: "Trading Simulator Pro",
+    kinds: ["web", "pwa"],
+    summary: "Simulador de bolsa personal con dinero ficticio: órdenes, cartera, estadísticas y precios de fuentes gratuitas.",
+    problem:
+      "Practicar la compra y venta de activos sin arriesgar nada. Cada operación se ejecuta de forma virtual, y el precio y la calidad del dato se muestran siempre a la vista.",
+    features: [
+      "Órdenes de mercado, límite, stop, Stop Loss y Take Profit",
+      "Cartera, historial y estadísticas de rendimiento y riesgo",
+      "Gráficos con temporalidades de 1 minuto a 1 mes e indicadores",
+      "Calidad del dato visible: tiempo real, retrasado u obsoleto; lo obsoleto nunca se opera",
+      "Alertas, noticias, calendario de mercados, backtesting y repetición de sesiones",
+    ],
+    stack: ["TypeScript", "React", "Vite", "Cloudflare Workers", "Hono", "Supabase", "decimal.js", "Vitest", "Playwright"],
+    notes: [
+      {
+        text: "Captura del modo local: los precios son de prueba. En la versión real salen de fuentes gratuitas.",
+        at: { x: 35, y: 23 },
+      },
+      { text: "El navegador nunca envía el precio de una ejecución: lo obtiene el servidor en ese momento.", at: { x: 74, y: 17 } },
+      { text: "Todo el efectivo y las posiciones se mueven en una función SQL con bloqueo; todas las tablas tienen RLS." },
+    ],
+    image: {
+      src: tradingSimulatorShot,
+      alt: "Ficha de Apple (AAPL) en Trading Simulator Pro: precio, compra y venta, botones Comprar y Vender y gráfico de velas diario con volumen. Datos de prueba del modo local.",
+    },
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "pricepilot",
+    title: "PricePilot",
+    kinds: ["movil"],
+    summary: "Comparador de precios para Android: «Nunca compres caro».",
+    problem:
+      "Saber si un precio es buena oferta de verdad. Compara un producto entre tiendas y, cuando hay datos suficientes, puntúa la oferta; si no los hay, lo dice en lugar de inventar una comparación.",
+    features: [
+      "Búsqueda por texto o por descripción, y escaneo de códigos",
+      "Categorías, mejores oportunidades y favoritos",
+      "Puntuación de la oferta frente a su historial de precios",
+      "Versión de demostración: productos y precios no son reales hasta conectar fuentes de verdad",
+    ],
+    stack: ["Expo", "React Native", "TypeScript", "Supabase", "Vitest"],
+    notes: [
+      { text: "Los datos de demostración van marcados en pantalla; una compilación de producción no los carga.", at: { x: 35, y: 21 } },
+      { text: "El plan descarta rastrear webs de tiendas: solo fuentes oficiales, feeds de afiliación y datos abiertos." },
+      { text: "Sin historial suficiente no hay puntuación: el detector se abstiene y lo dice." },
+    ],
+    image: {
+      src: pricepilotShot,
+      alt: "Inicio de PricePilot en modo oscuro: buscador, aviso de datos de demostración, categorías y las mejores oportunidades con su puntuación.",
+    },
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "all4plans",
+    title: "All4Plans",
+    kinds: ["movil"],
+    summary: "App móvil para organizar planes y viajes en grupo, con el reparto de gastos incluido.",
+    problem:
+      "Organizar un plan o un viaje entre varias personas sin hojas de cálculo: itinerario, listas y logística en un sitio, y cada gasto repartido entre el grupo.",
+    features: [
+      "Itinerario, listas y logística del plan",
+      "Reparto de gastos estilo Tricount: quién debe a quién",
+      "Invitaciones por enlace y entrada con Google o con correo",
+      "Anotar gastos y ver el plan también sin cobertura",
+    ],
+    stack: ["Expo", "React Native", "TypeScript", "Supabase", "Vitest"],
+    notes: [
+      { text: "«Apuntar un gasto» funciona sin correo gracias a la entrada como invitado." },
+      { text: "Las migraciones y las reglas de seguridad por filas se prueban contra un Postgres real." },
+    ],
+    image: {
+      src: all4plansShot,
+      alt: "Pantalla de acceso de All4Plans: el titular «Los planes del grupo y las cuentas, en el mismo sitio», entrada con Google o con correo y los accesos a itinerario, listas, cuentas y coches.",
+    },
+    links: [],
+    credit: "Proyecto en colaboración con otro desarrollador.",
+    visible: true,
+  },
+  {
+    slug: "web-boda",
+    title: "Web de boda",
+    kinds: ["web"],
+    summary: "Web de boda con invitación, cuenta atrás, confirmación de asistencia y panel para los novios.",
+    problem:
+      "Dar a los invitados todo lo de la boda en un solo sitio —el día, la finca, las mesas y la confirmación— y a los novios, un panel con el estado de las respuestas, los menús y las alergias.",
+    features: [
+      "Invitación con cuenta atrás, historia, horarios y finca, en español e inglés",
+      "Enlace personal por invitado: lo saluda por su nombre y le marca su mesa",
+      "Confirmación de asistencia con menú, alergias, niños y autobús",
+      "Subida de fotos desde un código QR en las mesas",
+      "Panel de los novios con resumen, invitados, mesas y exportación a Excel y PDF para el catering",
+      "Modo sin conexión",
+    ],
+    stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "framer-motion"],
+    notes: [
+      { text: "Los invitados de la captura son datos de prueba ficticios.", at: { x: 36, y: 53 } },
+      { text: "De momento funciona solo en local: los datos se guardan en el navegador del equipo." },
+    ],
+    image: {
+      src: webBodaShot,
+      alt: "Panel de los novios con datos de prueba: total de invitados, confirmados, pendientes, niños y autobuses, menús, alergias y últimas respuestas.",
     },
     links: [],
     visible: true,
