@@ -1,11 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="16" fill="#1d2fd6"/>
-  <g fill="#fff">
-    <path fill-rule="evenodd" d="M9.5 25.5a11 11 0 1 0 22 0 11 11 0 1 0-22 0ZM16 25.5a4.5 4.5 0 1 0 9 0 4.5 4.5 0 1 0-9 0Z"/>
-    <rect x="9.5" y="25.5" width="6.5" height="24"/>
-  </g>
-  <g fill="#dcff50">
-    <path fill-rule="evenodd" d="M32.5 25.5a11 11 0 1 0 22 0 11 11 0 1 0-22 0ZM39 25.5a4.5 4.5 0 1 0 9 0 4.5 4.5 0 1 0-9 0Z"/>
-    <rect x="48" y="25.5" width="6.5" height="11"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#dcff50" stroke-width="1.6" stroke-dasharray="2 2.6" opacity="0.8"/>
+  <g fill="none" stroke="#dcff50" stroke-width="4" stroke-linejoin="miter">
+    <path d="M23.5 43V22.5H30.5a5.25 5.25 0 0 1 0 10.5H23.5"/>
+    <path d="M36 43L43 22.5L50 43"/>
+    <path d="M39 36.5H47"/>
   </g>
 </svg>
