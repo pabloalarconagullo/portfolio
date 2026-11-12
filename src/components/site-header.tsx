@@ -105,7 +105,10 @@ export function SiteHeader({ name }: { name: string | null }) {
       </a>
       <div className="shell flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link href="/" className="t-wide flex items-center gap-2.5 text-[1.05rem] font-extrabold tracking-[-0.03em] [--wdth:110]" onClick={close}>
-          <span aria-hidden="true" className="size-3 rotate-45 bg-cobalt" />
+          <span aria-hidden="true" className="relative grid size-9 shrink-0 place-items-center rounded-full bg-cobalt">
+            <span className="absolute inset-[3px] rounded-full border border-dashed border-marker/70" />
+            <span className="text-[0.7rem] leading-none font-extrabold tracking-[-0.02em] text-marker">PA</span>
+          </span>
           {name ?? <span className="pending">Pendiente: tu nombre</span>}
         </Link>
 
