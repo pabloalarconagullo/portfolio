@@ -101,7 +101,8 @@ export const projects: Project[] = [
     slug: "pablo-alarcon",
     title: "Web profesional de Graduado Social",
     kinds: ["web"],
-    summary: "Mi web como Graduado Social en Elche y Alicante, con calculadoras de despido y finiquito y un asistente de plazos.",
+    summary:
+      "Mi web como Graduado Social en Elche y Alicante, con calculadoras de despido y finiquito, un contador de plazos y un traductor de nómina.",
     problem:
       "Explicar a trabajadores y empresas, sin letra pequeña, en qué puedo ayudarles con contratos, nóminas, despidos o una inspección, y facilitar que cuenten su caso.",
     features: [
@@ -109,6 +110,8 @@ export const projects: Project[] = [
       "Calculadora de indemnización por despido improcedente u objetivo",
       "Calculadora de finiquito y una página específica para empresas",
       "Asistente «¿Qué hago con mi caso?» que orienta sobre plazos y el siguiente paso",
+      "Contador de plazos: eliges el caso y la fecha y ves cuántos días quedan y en qué paso estás",
+      "Traductor de nómina: qué significa cada concepto del recibo y qué preguntar a la empresa",
       "Formulario de contacto con el asunto ya elegido desde cada servicio",
       "Preguntas frecuentes y datos estructurados para buscadores",
     ],
@@ -558,6 +561,72 @@ export const projects: Project[] = [
       src: panelVisitasShot,
       alt: "Panel de visitas con datos de ejemplo: titular con los clics desde Google, tres cifras clave, un aviso de datos de ejemplo y la gráfica diaria de apariciones en Google con las publicaciones del sitemap debajo.",
     },
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "control-fijos-discontinuos",
+    title: "Control de fijos discontinuos",
+    kinds: ["web", "local"],
+    summary: "Censo de trabajadores fijos discontinuos con sus periodos de trabajo, alertas y llamamientos por antigüedad.",
+    problem:
+      "Llevar a los fijos discontinuos de cada empresa con sus periodos de actividad e IT, ver quién se acerca al límite de días y hacer el llamamiento por orden de antigüedad.",
+    features: [
+      "Censo por empresa con estado activo, inactivo o en IT",
+      "Periodos de trabajo e incapacidad temporal de cada trabajador",
+      "Cómputo de días de los últimos 12 meses con vacaciones proporcionales y alerta a partir de 255",
+      "Aviso de los trabajadores que llevan 6 meses o más sin llamamiento",
+      "Bolsa de llamamiento ordenada por antigüedad y cartas de llamamiento en PDF",
+      "Gráfica de trabajadores activos en los últimos 12 meses",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Dexie (IndexedDB)", "date-fns", "Recharts", "jsPDF"],
+    notes: [
+      { text: "Los datos se guardan en el navegador (IndexedDB): no hay servidor." },
+      { text: "Las cartas de llamamiento se generan en el propio navegador con jsPDF." },
+    ],
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "resumen-boe",
+    title: "Resumen diario del BOE",
+    kinds: ["local"],
+    summary: "Lee el BOE de cada día, se queda con lo laboral y lo envía por correo.",
+    problem:
+      "No perderse nada del BOE que afecte a una asesoría laboral: cada día deja una página con lo que interesa y avisa si se publica un convenio que aplica a algún cliente.",
+    features: [
+      "Lectura del sumario con la API de datos abiertos del BOE",
+      "Una página HTML por día y un índice",
+      "Cruce con los convenios colectivos de los clientes a partir del Excel del despacho",
+      "Envío por correo solo de los días que traen contenido",
+      "Rehace una fecha concreta o los últimos días que falten",
+    ],
+    stack: ["Node.js", "API de datos abiertos del BOE", "nodemailer", "xlsx"],
+    notes: [
+      { text: "Si el Excel de convenios no está disponible, lo avisa y sigue en lugar de fallar." },
+      { text: "Las fechas se calculan en hora de Madrid." },
+    ],
+    links: [],
+    visible: true,
+  },
+  {
+    slug: "panel-proyectos",
+    title: "Panel de proyectos",
+    kinds: ["local"],
+    summary: "Página que reúne el estado de mis repositorios, la cuota de GitHub Actions y las renovaciones del hosting.",
+    problem:
+      "Ver de un vistazo qué repositorios tienen actividad, cuántos minutos de GitHub Actions quedan en el mes y qué renovación vence pronto, sin entrar en varios paneles.",
+    features: [
+      "Estado y actividad reciente de los repositorios de GitHub",
+      "Minutos de GitHub Actions consumidos frente a la cuota, con aviso por porcentaje",
+      "Despliegues recientes",
+      "Aviso de las renovaciones del hosting con antelación",
+    ],
+    stack: ["Node.js", "API de GitHub", "HTML"],
+    notes: [
+      { text: "Lee la API de GitHub con la sesión de gh y reintenta si la red corta." },
+      { text: "Genera una página HTML estática que se abre en el navegador." },
+    ],
     links: [],
     visible: true,
   },
