@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 
+import aPieDeTierraShot from "@/assets/projects/a-pie-de-tierra.png";
 import actasShot from "@/assets/projects/actas.png";
 import clasificadorShot from "@/assets/projects/clasificador.png";
 import elementosEsencialesShot from "@/assets/projects/elementos-esenciales.png";
@@ -130,6 +131,40 @@ export const projects: Project[] = [
     },
     links: [{ label: "Visitar la web", href: "https://pablo-alarcon.vercel.app" }],
     featured: true,
+    visible: true,
+  },
+  {
+    slug: "a-pie-de-tierra",
+    featured: true,
+    title: "A Pie de Tierra",
+    kinds: ["web"],
+    summary:
+      "Web de una bodega de garnacha del valle del Alberche que cuenta, al hacer scroll, el viaje del vino desde la tierra hasta la copa.",
+    problem:
+      "Presentar una bodega pequeña y sus vinos con una experiencia a la altura de su producto, en español e inglés, y dar a distribuidores y restaurantes las fichas técnicas listas para descargar.",
+    features: [
+      "Portada narrativa: la viña crece, se vendimia y la botella se descorcha y sirve una copa mientras bajas",
+      "Fichas de cada vino con descarga en PDF, fotos de botella y logotipos para profesionales",
+      "Mapa interactivo que acerca del valle al pueblo y a cada parcela, galería de fotos y vídeo con subtítulos",
+      "Español e inglés en 29 páginas, con datos estructurados para buscadores",
+      "Aviso de mayoría de edad y versión sin animaciones para quien prefiere menos movimiento",
+    ],
+    stack: ["Astro", "TypeScript", "GSAP", "ScrollTrigger", "Lenis", "Canvas", "Cloudflare Workers"],
+    notes: [
+      {
+        text: "Escenas fijadas con GSAP ScrollTrigger y scroll suave con Lenis: todo se puede recorrer hacia atrás.",
+        at: { x: 30, y: 60 },
+      },
+      { text: "Versión en inglés completa, con hreflang entre cada pareja de páginas.", at: { x: 93.5, y: 4 } },
+      { text: "El vino que cae en la copa se dibuja en canvas según el tiempo de vertido: caída, volumen y ondas." },
+      { text: "Sitio estático: sin servidor, cookies ni analítica, y con cabeceras de seguridad propias." },
+    ],
+    image: {
+      src: aPieDeTierraShot,
+      alt: "Portada de la web de A Pie de Tierra: vista del valle con encinas bajo un cielo nublado, el titular «Todo empieza a pie de tierra», el sello redondo de la bodega y el menú de vinos, viña, galería y contacto.",
+    },
+    links: [],
+    credit: "Fotografías, etiquetas y logotipos: Bodega A Pie de Tierra S.L.",
     visible: true,
   },
   {
